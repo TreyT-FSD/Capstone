@@ -9,16 +9,19 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { BrowseComponent } from './browse/browse.component';
 import { AdminComponent } from './admin/admin.component';
+import { AdminService } from './services/admin.service';
+import { AuthGaurd } from './services/auth-gaurd.service';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 @NgModule({
   declarations: [    
-    MainComponent, PageNotFoundComponent, AboutComponent, ContactComponent, BrowseComponent, AdminComponent
+    MainComponent, PageNotFoundComponent, AboutComponent, ContactComponent, BrowseComponent, AdminComponent, AdminLoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AdminService, AuthGaurd],
   bootstrap: [MainComponent]
 })
 export class AppModule { }
