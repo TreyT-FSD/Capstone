@@ -8,10 +8,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { BrowseComponent } from './browse/browse.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [    
-    MainComponent, PageNotFoundComponent, AboutComponent, ContactComponent, BrowseComponent
+    MainComponent, PageNotFoundComponent, AboutComponent, ContactComponent, BrowseComponent, AdminComponent
   ],
   imports: [
     BrowserModule,
