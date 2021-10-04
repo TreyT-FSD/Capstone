@@ -1,3 +1,41 @@
-<p>main works</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">NMS Cinema</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- <li class="nav-item">
+            <a class="nav-link active" routerLink=''>Home</a>
+          </li> -->
+            </ul>
+            <!-- <div class="d-flex">
+          <a routerLink="cart"><img src="assets/Cart.png" alt="Cart Icon" width="40" height="40"></a>
+        </div> -->
+        </div>
+    </div>
+</nav>
 
-<router-outlet></router-outlet>
+
+<div class="p-4 mb-4">
+    <div class="container-fluid py-5">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <hr>
+    <p class="mb-1">NMS Cinema</p>
+    <ul class="list-inline">
+        <li class="list-inline-item ">
+            <a routerLink="admin" class="text-reset text-decoration-none">&nbsp;&nbsp;Admin</a>
+        </li>
+        <li>
+            <div *ngIf="isLoggedIn()">
+                <button routerLink="" class="btn text-reset " (click)="logout()">Logout</button>
+            </div>
+        </li>
+    </ul>
+</footer>
