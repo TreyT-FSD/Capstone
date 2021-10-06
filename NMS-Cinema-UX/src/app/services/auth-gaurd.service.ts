@@ -14,13 +14,19 @@ export class AuthGaurd implements CanActivate {
      * @returns True if the logged in user is an admin.
      */
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        if(this.isAdmin()){
-            return true;
+        // console.log(route.url[0].path);
+        // check which url we are coming from
+        let urlPath = route.url[0].path;
+        if(urlPath === "admin"){
+            if(this.isAdmin()){
+                return true;
+            }
+            else{
+                this._router.navigate(["admin-login"]);
+                return false;
+            }
         }
-        else{
-            this._router.navigate(["admin-login"]);
-            return false;
-        }
+        return false;
     }
 
     /**

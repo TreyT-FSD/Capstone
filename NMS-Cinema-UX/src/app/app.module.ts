@@ -12,6 +12,8 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminService } from './services/admin.service';
 import { AuthGaurd } from './services/auth-gaurd.service';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [    
@@ -19,6 +21,8 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [AdminService, AuthGaurd],

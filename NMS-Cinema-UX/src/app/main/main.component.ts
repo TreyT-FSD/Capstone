@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthGaurd } from '../services/auth-gaurd.service';
 
 @Component({
   selector: 'app-main',
@@ -7,19 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _authGaurd:AuthGaurd) { }
 
   ngOnInit(): void {
   }
 
-  //TODO: implement login check
-  isLoggedIn(): boolean {
-    return false;
+  isLoggedIn(): boolean{
+    return this._authGaurd.isAdmin();
   }
 
-  //TODO: implement logout
-  logout(): void {
-
+  logout(){
+    this._authGaurd.adminLogout();
   }
 
 }
