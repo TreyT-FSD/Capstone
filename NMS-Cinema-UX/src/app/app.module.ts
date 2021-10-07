@@ -14,10 +14,11 @@ import { AuthGaurd } from './services/auth-gaurd.service';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MoviesComponent } from './movies/movies.component';
 
 @NgModule({
   declarations: [    
-    MainComponent, PageNotFoundComponent, AboutComponent, ContactComponent, BrowseComponent, AdminComponent, AdminLoginComponent
+    MainComponent, PageNotFoundComponent, AboutComponent, ContactComponent, BrowseComponent, AdminComponent, AdminLoginComponent, MoviesComponent
   ],
   imports: [
     BrowserModule,

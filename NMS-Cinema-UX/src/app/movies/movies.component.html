@@ -1,0 +1,41 @@
+<h3>Movie Management</h3>
+<!-- TODO: implement add movie button -->
+<a routerLink="movie-add" class='btn btn-primary'>Add a New Movie</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Duration</th>
+            <th>Genre</th>
+            <th>Ticket Price</th>
+            <th>Language</th>
+            <th>Showtimes</th>
+            <th>Available Tickets</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- There is some weird css glitch with the borders when nesting tables. disabled all borders for now -->
+        <tr *ngFor="let movie of movies" style="border-style: hidden;">
+            <td>{{movie.id}}</td>
+            <td>{{movie.title}}</td>
+            <td>{{movie.description}}</td>
+            <td>{{movie.duration}}</td>
+            <td>{{getGenreName(movie.genreId)}}</td>
+            <td>{{movie.ticketPrice}}</td>
+            <td>{{movie.language}}</td>
+
+            <!-- TODO: think about an alternative to display the showtimes -->
+            <!-- <td>{{movie.showtimes}}</td> -->
+            <ol style="list-style: none; margin-bottom: 0px; border-bottom-style: hidden">
+                <li>test</li>
+                <li>test2</li>
+            </ol>
+
+            <td>{{movie.availableTickets}}</td>
+            <td><a (click)="removeMovie(movie.id)" class='btn btn-danger'>Delete</a></td>
+        </tr>
+    </tbody>
+</table>
