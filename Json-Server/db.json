@@ -1,9 +1,63 @@
 {
-    "admin": [
-      {
-        "id": 1,
-        "username": "admin",
-        "password": "12345"
-      }
-    ]
-  }
+  "admin": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "12345"
+    }
+  ],
+  "movie": [
+    {
+      "id": 1,
+      "title": "Movie 1",
+      "description": "The first movie.",
+      "duration": "2h 11m",
+      "genreId": 1,
+      "ticketPrice": 5.00,
+      "language": "EN",
+      "showtimes": [
+        "showtime1",
+        "showtime2"
+      ],
+      "availableTickets": 100
+    },
+    {
+      "id": 2,
+      "title": "Movie 1",
+      "description": "The first movie.",
+      "duration": "2h 11m",
+      "genreId": 2,
+      "ticketPrice": 5.00,
+      "language": "EN",
+      "showtimes": [
+        "showtime1",
+        "showtime2"
+      ],
+      "availableTickets": 100
+    },
+    {
+      "id": 2,
+      "title": "Movie 1",
+      "description": "The first movie.",
+      "duration": "2h 11m",
+      "genreId": 2,
+      "ticketPrice": 5.00,
+      "language": "EN",
+      "showtimes": [
+        "showtime1",
+        "showtime2"
+      ],
+      "availableTickets": 100
+    }
+  ],
+  "genre": [
+    {
+      "id": 1,
+      "name": "Action"
+    },
+    {
+      "id": 2,
+      "name": "Comedy"
+    }
+  ]
+}
