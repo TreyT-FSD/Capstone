@@ -13,7 +13,9 @@
             <th>Language</th>
             <th>Showtimes</th>
             <th>Available Tickets</th>
+            <th>Active</th>
             <th>Actions</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -24,7 +26,7 @@
             <td>{{movie.description}}</td>
             <td>{{movie.duration}}</td>
             <td>{{getGenreName(movie.genreId)}}</td>
-            <td>{{movie.ticketPrice}}</td>
+            <td>$ {{movie.ticketPrice}}</td>
             <td>{{movie.language}}</td>
 
             <!-- TODO: think about an alternative to display the showtimes -->
@@ -35,7 +37,11 @@
             </ol>
 
             <td>{{movie.availableTickets}}</td>
-            <td><a (click)="removeMovie(movie.id)" class='btn btn-danger'>Delete</a></td>
+
+            <!-- TODO: maybe find a better way to show the active/inactive status -->
+            <!-- maybe use a function to convert true/false to yes/no -->
+            <td>{{movie.active}}</td>
+            <td><a routerLink="/admin/movie/{{movie.id}}" class='btn btn-success'>Update</a> | <a (click)="removeMovie(movie.id)" class='btn btn-danger'>Delete</a></td>
         </tr>
     </tbody>
 </table>
