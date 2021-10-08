@@ -1,0 +1,116 @@
+<div *ngIf="movie">
+    <div class="row">
+        <!-- <div class="col col-sm-2"></div> -->
+        <div class="col col-sm-3 ">
+            <h3 class="text-center">{{movie.title | uppercase}}</h3>
+        </div>
+        <div class="col col-sm-8"></div>
+    </div>
+    <div class="row mb-3">
+        <div class="col col-sm-2">
+            <label for="movie-id">Movie Id: </label>
+        </div>
+        <div class="col col-sm-2">
+            {{movie.id}}
+        </div>
+        <div class="col col-sm-8"></div>
+    </div>
+    <div class="row mb-3">
+        <div class="col col-sm-2">
+            <label for="movie-title">Movie Title: </label>
+        </div>
+        <div class="col col-sm-2">
+            <input id="movie-title" [(ngModel)]="movie.title">
+        </div>
+        <div class="col col-sm-8"></div>
+    </div>
+    <div class="row mb-3">
+        <div class="col col-sm-2">
+            <label for="movie-description">Movie Description: </label>
+        </div>
+        <div class="col col-sm-2">
+            <input id="movie-description" [(ngModel)]="movie.description">
+        </div>
+        <div class="col col-sm-8"></div>
+    </div>
+    <div class="row mb-3">
+        <div class="col col-sm-2">
+            <label for="movie-duration">Movie Duration: </label>
+        </div>
+        <div class="col col-sm-2">
+            <input id="movie-duration" [(ngModel)]="movie.duration">
+        </div>
+        <div class="col col-sm-8"></div>
+    </div>
+    <div class="row mb-1">
+        <div class="col col-sm-2">
+            <label for="movie-genreId">Movie Genre: </label>
+        </div>
+        <div class="col col-sm-2">
+            <select class="form-select form-select-sm mb-3" style="width: auto;" id="movie-genreId" name="movie-genreId"
+                [(ngModel)]="movie.genreId">
+                <option *ngFor="let genre of genres" value="{{genre.id}}">{{genre.name}}</option>
+            </select>
+        </div>
+        <div class="col col-sm-8"></div>
+    </div>
+    <div class="row mb-3">
+        <div class="col col-sm-2">
+            <label for="movie-ticketprice">Movie Ticket Price: </label>
+        </div>
+        <div class="col col-sm-2">
+            <input id="movie-ticketprice" [(ngModel)]="movie.ticketPrice">
+        </div>
+        <div class="col col-sm-8"></div>
+    </div>
+    <div class="row mb-3">
+        <div class="col col-sm-2">
+            <label for="movie-language">Movie Language: </label>
+        </div>
+        <div class="col col-sm-2">
+            <input id="movie-language" [(ngModel)]="movie.language">
+        </div>
+        <div class="col col-sm-8"></div>
+    </div>
+    <div class="row mb-3">
+        <div class="col col-sm-2">
+            <label for="movie-showtimes">Movie Showtimes: </label>
+        </div>
+        <div class="col col-sm-2">
+            <input id="movie-showtimes" [(ngModel)]="movie.showtimes">
+        </div>
+        <div class="col col-sm-8"></div>
+    </div>
+    <div class="row mb-3">
+        <div class="col col-sm-2">
+            <label for="movie-availabletickets">Movie Available Tickets: </label>
+        </div>
+        <div class="col col-sm-2">
+            <input id="movie-availabletickets" [(ngModel)]="movie.availableTickets">
+        </div>
+        <div class="col col-sm-8"></div>
+    </div>
+    <div class="row mb-3">
+        <div class="col col-sm-2">
+            <label for="active">Activate Movie</label>
+        </div>
+        <div class="col col-sm-2">
+            <input type="checkbox" id="active" name="active" class="form-check-input" [(ngModel)]="movie.active"
+                #active="ngModel">
+        </div>
+        <div class="col col-sm-8"></div>
+    </div>
+
+
+    <br>
+    <!-- <div class="row mb-3 justify-content-md-center"> -->
+    <div class="col col-sm-4">
+        <button class="btn btn-primary" (click)="updateMovie()">Update Movie</button> |
+        <a class="btn btn-secondary" routerLink="/admin">Back </a>
+    </div>
+    <div class="col col-sm-8"></div>
+
+</div>
+<div *ngIf="!movie">
+    Failed to retrieve the movie.
+</div>
