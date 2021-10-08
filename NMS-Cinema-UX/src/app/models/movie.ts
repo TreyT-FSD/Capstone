@@ -10,6 +10,7 @@ export class Movie {
     language: string;
     showtimes: Array<string>;
     availableTickets: number;
+    active:boolean
 
     constructor() {
         this.id = 0;
@@ -21,5 +22,6 @@ export class Movie {
         this.language = "";
         this.showtimes = new Array<string>();
         this.availableTickets = 0;
+        this.active=false
     }
 }
