@@ -12,11 +12,11 @@ export class AdminService {
 
   constructor(private _http: HttpClient) { }
 
-    getAdmin(): Observable<Admin> {
-        return this._http.get<Admin>(this.ADMIN_API + "/admin/1");
-    }
+  getAdmin(): Observable<Admin> {
+    return this._http.get<Admin>(this.ADMIN_API + "/admin/1");
+  }
 
-    updatePassword(admin: Admin): Observable<Admin> {
-        return this._http.put<Admin>(this.ADMIN_API + "/admin/" + admin.id, admin);
-    }
+  updatePassword(admin: Admin): Observable<Admin> {
+    return this._http.put<Admin>(this.ADMIN_API + "/admin/" + admin.id, admin);
+  }
 }
