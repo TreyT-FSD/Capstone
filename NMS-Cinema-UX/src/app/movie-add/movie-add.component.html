@@ -1,0 +1,82 @@
+<h3>Add a Movie</h3>
+<form #mf="ngForm" (ngSubmit)="addMovie()">
+    <div class="mb-3" [hidden]="mf.submitted">
+
+        <label for="name">Movie Title</label>
+        <input type="text" id="name" name="name" class="form-control mb-3" required [(ngModel)]="movie.title"
+            #name="ngModel">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)">
+            <div *ngIf="name.errors?.required">A movie title is required</div>
+        </div>
+
+        <label for="description">Movie Description</label>
+        <input type="text" id="description" name="description" class="form-control mb-3" required
+            [(ngModel)]="movie.description" #description="ngModel">
+        <div *ngIf="description.invalid && (description.dirty || description.touched)">
+            <div *ngIf="description.errors?.required">A description is required</div>
+        </div>
+
+        <label for="price">Movie Duration</label>
+        <input type="text" id="movie-duration" name="movie-duration" class="form-control mb-3" required
+            [(ngModel)]="movie.duration" #duration="ngModel">
+        <div *ngIf="duration.invalid && (duration.dirty || duration.touched)">
+            <div *ngIf="duration.errors?.required">A duration is required</div>
+        </div>
+
+        <label for="genre">Movie Genre</label>
+        <select class="form-select mb-3 form-control" id="genre" name="genre" required [(ngModel)]="movie.genreId"
+            #genre="ngModel">
+            <option selected value="">Select a Genre</option>
+            <option *ngFor="let genre of genres" value="{{genre.id}}">{{genre.name}}</option>
+        </select>
+        <div *ngIf="genre.invalid && (genre.dirty || genre.touched)">
+            <div *ngIf="genre.errors?.required">A genre is required</div>
+        </div>
+
+        <label for="ticketPrice">Ticket Price</label>
+        <input type="number" id="ticketPrice" name="ticketPrice" class="form-control mb-3" required
+            [(ngModel)]="movie.ticketPrice" #ticketPrice="ngModel">
+        <div *ngIf="ticketPrice.invalid && (ticketPrice.dirty || ticketPrice.touched)">
+            <div *ngIf="ticketPrice.errors?.required">A ticket price is required</div>
+        </div>
+
+        <label for="language">Movie Language</label>
+        <input type="text" id="language" name="language" class="form-control mb-3" required [(ngModel)]="movie.language"
+            #language="ngModel">
+        <div *ngIf="language.invalid && (language.dirty || language.touched)">
+            <div *ngIf="language.errors?.required">A language is required</div>
+        </div>
+
+        <label for="showtimes">Movie Showtimes</label>
+        <input type="text" id="showtimes" name="showtimes" class="form-control mb-3" required
+            [(ngModel)]="movie.showtimes" #showtimes="ngModel">
+        <div *ngIf="showtimes.invalid && (showtimes.dirty || showtimes.touched)">
+            <div *ngIf="showtimes.errors?.required">A showtime is required</div>
+        </div>
+
+        <label for="availableTickets">Available Tickets</label>
+        <input type="number" id="availableTickets" name="availableTickets" class="form-control mb-3" required
+            [(ngModel)]="movie.availableTickets" #availableTickets="ngModel">
+        <div *ngIf="availableTickets.invalid && (availableTickets.dirty || availableTickets.touched)">
+            <div *ngIf="availableTickets.errors?.required">A availableTickets is required</div>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" id="active" name="active" class="form-check-input"
+                [(ngModel)]="movie.active" #active="ngModel">
+            <label for="active">Activate Movie?</label>
+        </div>
+
+        <input type="submit" value="Add Movie" class="btn btn-success" [disabled]="mf.invalid"> |
+        <input type="reset" value="Clear Fields" class="btn btn-danger"> |
+        <a class="btn btn-secondary" routerLink="/admin">Back</a>
+
+    </div>
+
+    <div class="submitted-message" *ngIf="mf.submitted">
+        <p>You've submited movie: {{ mf.value.name }}</p>
+        <button (click)="mf.resetForm({})" class="btn btn-secondary">Add Another Movie</button> |
+        <a class="btn btn-secondary" routerLink="/admin">Back to Admin</a>
+    </div>
+
+</form>

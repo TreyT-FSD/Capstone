@@ -1,1 +1,20 @@
-<p>admin works!</p>
+<h3>Admin</h3>
+
+<p>Change Admin Password</p>
+
+<form #pwf="ngForm">
+    <div style="width: 14rem;">
+        <input type="password" name="password" placeholder="Password" class="form-control mb-1" [(ngModel)]="admin.password"
+            required minlength="5" #password="ngModel">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                <div *ngIf="password.errors?.required">Password cannot be blank</div>
+                <div *ngIf="password.errors?.minlength">Password must be atleast 5 characters</div>
+            </div>
+    </div>
+    <div>
+        <input type="submit" value="Change Password" (click)="changePassword();pwf.resetForm({})" class="btn btn-secondary" [disabled]="pwf.invalid">
+        <!-- TODO: Decide if we want a form reset button for the admin pwd -->
+    </div>
+</form>
+<hr>
+<app-movies></app-movies>
