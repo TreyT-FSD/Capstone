@@ -24,7 +24,8 @@ export class MoviesComponent implements OnInit {
       },
       error => {
         console.log(error);
-      });
+      }
+    );
 
     //get genres
     this._genreService.getGenres().subscribe(
@@ -36,14 +37,21 @@ export class MoviesComponent implements OnInit {
       });
   }
 
-  getGenreName(id:number): string | undefined{
+  getGenreName(id: number): string | undefined {
     // TODO: Maybe some basic error handling incase we fail to get the list of genres
     let genreName = this.genres.find(element => element.id == id)?.name;
-    
+
     return genreName;
   }
 
   removeMovie(id: number) {
-    //TODO: implement remove movie
+    this._movieService.deleteMovieById(id).subscribe(
+      result => {
+        this.ngOnInit();
+       },
+      error => {
+        console.log("an error occured while removing the movie. Try Again.");
+        alert("An error occured while removing the movie. Please try again.")
+      });
   }
 }
