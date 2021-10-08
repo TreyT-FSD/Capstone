@@ -15,10 +15,12 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MoviesComponent } from './movies/movies.component';
+import { MovieAddComponent } from './movie-add/movie-add.component';
+import { MovieUpdateComponent } from './movie-update/movie-update.component';
 
 @NgModule({
   declarations: [    
-    MainComponent, PageNotFoundComponent, AboutComponent, ContactComponent, BrowseComponent, AdminComponent, AdminLoginComponent, MoviesComponent
+    MainComponent, PageNotFoundComponent, AboutComponent, ContactComponent, BrowseComponent, AdminComponent, AdminLoginComponent, MoviesComponent, MovieAddComponent, MovieUpdateComponent
   ],
   imports: [
     BrowserModule,

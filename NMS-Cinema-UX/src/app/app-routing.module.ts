@@ -5,6 +5,8 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminComponent } from './admin/admin.component';
 import { BrowseComponent } from './browse/browse.component';
 import { ContactComponent } from './contact/contact.component';
+import { MovieAddComponent } from './movie-add/movie-add.component';
+import { MovieUpdateComponent } from './movie-update/movie-update.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGaurd } from './services/auth-gaurd.service';
 
@@ -13,6 +15,8 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'admin', component: AdminComponent, canActivate:[AuthGaurd]},
+  { path: 'admin/movie-add', component: MovieAddComponent, canActivate:[AuthGaurd]},
+  { path: 'admin/movie/:id', component: MovieUpdateComponent, canActivate:[AuthGaurd]},
   { path: 'admin-login', component:AdminLoginComponent},
   { path: '', redirectTo: '/browse', pathMatch: 'full'},
   { path: '**', component: PageNotFoundComponent}
