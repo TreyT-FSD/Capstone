@@ -15,4 +15,19 @@ export class GenreService {
     getGenres(): Observable<Array<Genre>> {
         return this._http.get<Array<Genre>>(this.GENRE_API + "/genre");
     }
+    getGenreById(id: number): Observable<Genre> {
+      return this._http.get<Genre>(this.GENRE_API + "/genre/" + id);
+    }
+  
+    addGenre(genre: Genre): Observable<Genre> {
+      return this._http.post<Genre>(this.GENRE_API + "/genre", genre);
+    }
+  
+    deleteGenreById(id: number): Observable<Genre> {
+      return this._http.delete<Genre>(this.GENRE_API + "/genre/" + id);
+    }
+  
+    updateGenreById(id: number, genre: Genre): Observable<Genre> {
+      return this._http.put<Genre>(this.GENRE_API + "/genre/" + id, genre);
+    }
 }

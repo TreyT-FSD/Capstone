@@ -17,10 +17,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieAddComponent } from './movie-add/movie-add.component';
 import { MovieUpdateComponent } from './movie-update/movie-update.component';
+import { GenresComponent } from './genres/genres.component';
+import { GenreAddComponent } from './genre-add/genre-add.component';
+import { GenreUpdateComponent } from './genre-update/genre-update.component';
 
 @NgModule({
   declarations: [    
-    MainComponent, PageNotFoundComponent, AboutComponent, ContactComponent, BrowseComponent, AdminComponent, AdminLoginComponent, MoviesComponent, MovieAddComponent, MovieUpdateComponent
+    MainComponent, PageNotFoundComponent, AboutComponent, ContactComponent, BrowseComponent, AdminComponent, AdminLoginComponent, MoviesComponent, MovieAddComponent, MovieUpdateComponent, GenresComponent, GenreAddComponent, GenreUpdateComponent
   ],
   imports: [
     BrowserModule,
