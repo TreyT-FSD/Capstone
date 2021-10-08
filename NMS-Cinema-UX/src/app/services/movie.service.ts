@@ -12,11 +12,23 @@ export class MovieService {
 
   constructor(private _http: HttpClient) { }
 
-    getMovies(): Observable<Array<Movie>> {
-        return this._http.get<Array<Movie>>(this.MOVIE_API + "/movie");
-    }
+  getMovies(): Observable<Array<Movie>> {
+    return this._http.get<Array<Movie>>(this.MOVIE_API + "/movie");
+  }
 
-    // updatePassword(admin: Movie): Observable<Admin> {
-    //     return this._http.put<Movie>(this.MOVIE_API + "/admin/" + admin.id, admin);
-    // }
+  getMovieById(id: number): Observable<Movie> {
+    return this._http.get<Movie>(this.MOVIE_API + "/movie/" + id);
+  }
+
+  addMovie(movie: Movie): Observable<Movie> {
+    return this._http.post<Movie>(this.MOVIE_API + "/movie", movie);
+  }
+
+  deleteMovieById(id: number): Observable<Movie> {
+    return this._http.delete<Movie>(this.MOVIE_API + "/movie/" + id);
+  }
+
+  updateMovieById(id: number, movie: Movie): Observable<Movie> {
+    return this._http.put<Movie>(this.MOVIE_API + "/movie/" + id, movie);
+  }
 }
