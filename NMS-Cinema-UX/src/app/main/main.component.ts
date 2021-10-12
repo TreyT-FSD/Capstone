@@ -13,11 +13,11 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  isLoggedIn(): boolean{
+  isAdmin(): boolean{
     return this._authGaurd.isAdmin();
   }
 
-  logout(){
+  adminLogout(){
     this._authGaurd.adminLogout();
   }
 

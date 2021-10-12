@@ -16,10 +16,19 @@
                 <li class="nav-item">
                     <a class="nav-link active" routerLink=''>Browse Movies</a>
                 </li>
+                <li *ngIf="isAdmin()">
+                    <a class="nav-link active" routerLink='admin'>Admin</a>
+                </li>
             </ul>
-            <!-- <div class="d-flex">
-          <a routerLink="cart"><img src="assets/Cart.png" alt="Cart Icon" width="40" height="40"></a>
-        </div> -->
+            <div class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li>
+                        <a class="nav-link active" routerLink='user-registration'>SignUp</a>
+                    <li>
+                        <a class="nav-link active" routerLink='user-login'>Login</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>
@@ -40,8 +49,8 @@
             <a routerLink="admin" class="text-reset text-decoration-none">&nbsp;&nbsp;Admin</a>
         </li>
         <li>
-            <div *ngIf="isLoggedIn()">
-                <button routerLink="" class="btn text-reset " (click)="logout()">Logout</button>
+            <div *ngIf="isAdmin()">
+                <button routerLink="" class="btn text-reset " (click)="adminLogout()">Logout</button>
             </div>
         </li>
     </ul>
