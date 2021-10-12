@@ -42,18 +42,18 @@
       "title": "Testing add again",
       "description": "this is a descriptor",
       "duration": "2h 5m",
-      "genreId": "2",
+      "genreId": "3",
       "ticketPrice": 12.23,
       "language": "EN",
       "showtimes": "WIP",
       "availableTickets": 150,
-      "active": true
+      "active": false
     }
   ],
   "genre": [
     {
       "id": 1,
-      "name": "Action"
+      "name": "Action/Adventure"
     },
     {
       "id": 2,
@@ -61,7 +61,7 @@
     },
     {
       "id": 3,
-      "name": "A Really Long Genre Name"
+      "name": "Third Genre"
     }
   ]
 }
