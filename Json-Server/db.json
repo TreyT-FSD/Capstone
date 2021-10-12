@@ -1,0 +1,67 @@
+{
+  "admin": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "12345"
+    }
+  ],
+  "movie": [
+    {
+      "id": 1,
+      "title": "New Title1",
+      "description": "The first movie.",
+      "duration": "2h 11m",
+      "genreId": 1,
+      "ticketPrice": 5,
+      "language": "EN",
+      "showtimes": [
+        "showtime1",
+        "showtime2"
+      ],
+      "availableTickets": 100,
+      "active": true
+    },
+    {
+      "id": 3,
+      "title": "Movie 3",
+      "description": "The first movie.",
+      "duration": "2h 11m",
+      "genreId": 1,
+      "ticketPrice": 5,
+      "language": "EN",
+      "showtimes": [
+        "showtime1",
+        "showtime2"
+      ],
+      "availableTickets": 100,
+      "active": true
+    },
+    {
+      "id": 4,
+      "title": "Testing add again",
+      "description": "this is a descriptor",
+      "duration": "2h 5m",
+      "genreId": "3",
+      "ticketPrice": 12.23,
+      "language": "EN",
+      "showtimes": "WIP",
+      "availableTickets": 150,
+      "active": false
+    }
+  ],
+  "genre": [
+    {
+      "id": 1,
+      "name": "Action/Adventure"
+    },
+    {
+      "id": 2,
+      "name": "Comedy"
+    },
+    {
+      "id": 3,
+      "name": "Third Genre"
+    }
+  ]
+}

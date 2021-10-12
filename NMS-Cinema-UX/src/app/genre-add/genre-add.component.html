@@ -1,0 +1,30 @@
+<h3>Add a Genre</h3>
+<div class="row">
+    <div class="col col-2">
+        <form #gf="ngForm" (ngSubmit)="addGenre()">
+            <div class="mb-3" [hidden]="gf.submitted">
+                <label for="name">Genre Name</label>
+                <input type="text" id="name" name="name" class="form-control mb-3" required [(ngModel)]="genre.name"
+                    #name="ngModel">
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="mb-3">
+                    <div *ngIf="name.errors?.required">A genre name is required</div>
+                </div>
+                <input type="submit" value="Add Genre" class="btn btn-success" [disabled]="gf.invalid"> |
+                <input type="reset" value="Clear Fields" class="btn btn-danger">
+                <br>
+                <br>                
+                <a class="btn btn-secondary" routerLink="/admin">Back</a>
+            </div>
+
+            <div class="submitted-message" *ngIf="gf.submitted">
+                <p>You've submited genre: {{ gf.value.name }}</p>
+                <button (click)="gf.resetForm({})" class="btn btn-secondary">Add Another Genre</button>
+                <br>
+                <br>
+                <a class="btn btn-secondary" routerLink="/admin">Back to Admin</a>
+            </div>
+
+        </form>
+    </div>
+    <div class="col col-8"></div>
+</div>

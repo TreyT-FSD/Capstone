@@ -1,0 +1,30 @@
+<div style="width: 18rem;">
+    <h3>Admin Login</h3>
+    <br />
+    <form #adminForm="ngForm" (ngSubmit)="login()">
+        <div class='mb-3'>
+            <input type="text" name="name" placeholder="User Name" class="form-control" [(ngModel)]="admin.username"
+                #name="ngModel" required>
+            <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                <div *ngIf="name.errors?.required">
+                    Name is required.
+                </div>
+            </div>
+
+        </div>
+        <div class='mb-3'>
+            <input type="password" name="password" placeholder="Password" class="form-control"
+                [(ngModel)]="admin.password" #password="ngModel" required>
+
+            <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                <div *ngIf="password.errors?.required">
+                    Password is required.
+                </div>
+            </div>
+
+        </div>
+        <input type="submit" value="Login" class="btn btn-success" [disabled]="adminForm.invalid"> |
+        <input type="reset" value="Clear Fields" class="btn btn-danger"> |
+        <a class="btn btn-secondary" routerLink="/">Back</a>
+    </form>
+</div>

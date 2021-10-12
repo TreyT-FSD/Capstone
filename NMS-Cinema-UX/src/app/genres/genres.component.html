@@ -1,0 +1,29 @@
+<h3>Genre Management</h3>
+<a routerLink="genre-add" class='btn btn-primary'>Add a New Genre</a>
+<div class="row">
+    <div class="col col-4">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Genre Id</th>
+                <th>Genre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let genre of genres" style="border-style: hidden;">
+                <td>{{genre.id}}</td>
+                <td>{{genre.name}}</td>
+                <td>
+                    <a routerLink="/admin/genre/{{genre.id}}" class='btn btn-success'>Update</a>
+                    |
+                    <a (click)="removeGenre(genre.id)" class='btn btn-danger'>Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="col col-8"></div>
+
+</div>
