@@ -31,8 +31,9 @@ export class MovieAddComponent implements OnInit {
   }
 
   addMovie() {
+    // TODO: remove this logging
     console.log(this.movie);
-
+    
     this._movieSvc.addMovie(this.movie).subscribe(
       result=>{},
       error=>{

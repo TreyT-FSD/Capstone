@@ -8,7 +8,7 @@ export class Movie {
     genreId: 1;
     ticketPrice: number;
     language: string;
-    showtimes: Array<string>;
+    showtimes: string;
     availableTickets: number;
     active:boolean
 
@@ -20,7 +20,7 @@ export class Movie {
         this.genreId = 1;
         this.ticketPrice = 0;
         this.language = "";
-        this.showtimes = new Array<string>();
+        this.showtimes = "";
         this.availableTickets = 0;
         this.active=false
     }

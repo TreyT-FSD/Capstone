@@ -54,4 +54,12 @@ export class MoviesComponent implements OnInit {
         alert("An error occured while removing the movie. Please try again.")
       });
   }
+
+  splitShowtimes(showtimes: string): Array<string>{
+    let result = new Array<string>();
+    // result = showtimes.split(",").forEach(showtime => showtime.trim());
+    result = showtimes.split(",");
+    result.forEach(str => str.trim());
+    return result;
+  }
 }

@@ -15,7 +15,7 @@
             <th>Available Tickets</th>
             <th>Active</th>
             <th>Actions</th>
-            
+
         </tr>
     </thead>
     <tbody>
@@ -28,20 +28,21 @@
             <td>{{getGenreName(movie.genreId)}}</td>
             <td>$ {{movie.ticketPrice}}</td>
             <td>{{movie.language}}</td>
-
-            <!-- TODO: think about an alternative to display the showtimes -->
-            <!-- <td>{{movie.showtimes}}</td> -->
-            <ol style="list-style: none; margin-bottom: 0px; border-bottom-style: hidden">
-                <li>test</li>
-                <li>test2</li>
-            </ol>
+            <td>
+                <ul style="list-style: none; margin-bottom: 0px;">
+                    <li *ngFor="let showtime of splitShowtimes(movie.showtimes)">{{showtime}}</li>
+                    <!-- <li>test</li>
+                    <li>test2</li> -->
+                </ul>
+            </td>
 
             <td>{{movie.availableTickets}}</td>
 
             <!-- TODO: maybe find a better way to show the active/inactive status -->
             <!-- maybe use a function to convert true/false to yes/no -->
             <td>{{movie.active}}</td>
-            <td><a routerLink="/admin/movie/{{movie.id}}" class='btn btn-success'>Update</a> | <a (click)="removeMovie(movie.id)" class='btn btn-danger'>Delete</a></td>
+            <td><a routerLink="/admin/movie/{{movie.id}}" class='btn btn-success'>Update</a> | <a
+                    (click)="removeMovie(movie.id)" class='btn btn-danger'>Delete</a></td>
         </tr>
     </tbody>
 </table>

@@ -46,14 +46,15 @@
         <div *ngIf="language.invalid && (language.dirty || language.touched)">
             <div *ngIf="language.errors?.required">A language is required</div>
         </div>
-
-        <label for="showtimes">Movie Showtimes</label>
-        <input type="text" id="showtimes" name="showtimes" class="form-control mb-3" required
-            [(ngModel)]="movie.showtimes" #showtimes="ngModel">
+        
+        <label for="showtimes">Movie Showtimes <small>(please enter a comma separated list of showtimes. Ex: 1:30pm, 3:45pm)</small></label>
+        <!-- <input type="text" id="showtimes" name="showtimes" class="form-control mb-3" required
+            [(ngModel)]="movie.showtimes" #showtimes="ngModel"> -->
+        <textarea class="form-control mb-3" id="showtimes" name="showtimes" required [(ngModel)]="movie.showtimes" #showtimes="ngModel"></textarea>
         <div *ngIf="showtimes.invalid && (showtimes.dirty || showtimes.touched)">
             <div *ngIf="showtimes.errors?.required">A showtime is required</div>
         </div>
-
+        
         <label for="availableTickets">Available Tickets</label>
         <input type="number" id="availableTickets" name="availableTickets" class="form-control mb-3" required
             [(ngModel)]="movie.availableTickets" #availableTickets="ngModel">
