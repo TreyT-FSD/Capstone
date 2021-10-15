@@ -1,0 +1,19 @@
+<p>Hello, {{user.firstName}}</p>
+
+<h3>Order History</h3>
+<!-- TODO: This will probably get replaced by an order component.
+     Another option would be to link to it here. -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let orderNum of user.orderNumbers">
+            <td>{{orderNum}}</td>
+        </tr>
+    </tbody>
+</table>
+<br><br>
+<button (click)="logout()">Logout</button>

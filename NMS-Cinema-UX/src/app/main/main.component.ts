@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from '../models/user';
 import { AuthGaurd } from '../services/auth-gaurd.service';
 
 @Component({
@@ -8,7 +10,7 @@ import { AuthGaurd } from '../services/auth-gaurd.service';
 })
 export class MainComponent implements OnInit {
 
-  constructor(private _authGaurd:AuthGaurd) { }
+  constructor(private _authGaurd:AuthGaurd, private _router:Router) { }
 
   ngOnInit(): void {
   }
@@ -19,6 +21,25 @@ export class MainComponent implements OnInit {
 
   adminLogout(){
     this._authGaurd.adminLogout();
+  }
+
+  isUser(): boolean{
+    return this._authGaurd.isUser();
+  }
+
+  userLogout(){
+    this._authGaurd.userLoguout();
+    this._router.navigate(['/browse']);
+  }
+
+  getUserEmail(): string {
+    let userObjAsString = sessionStorage.getItem("user");
+
+    if(userObjAsString != null){
+      let userFromSession = JSON.parse(userObjAsString) as User;
+      return userFromSession.email;
+    }
+    return "";
   }
 
 }

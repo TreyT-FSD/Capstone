@@ -11,11 +11,17 @@ import { MovieAddComponent } from './movie-add/movie-add.component';
 import { MovieUpdateComponent } from './movie-update/movie-update.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGaurd } from './services/auth-gaurd.service';
+import { UserLoginComponent } from './user-login/user-login.component';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   { path: 'browse', component: BrowseComponent},
   { path: 'about', component: AboutComponent},
   { path: 'contact', component: ContactComponent},
+  { path: 'user', component: UsersComponent, canActivate:[AuthGaurd]},
+  { path: 'user-registration', component: UserRegistrationComponent},
+  { path: 'user-login', component: UserLoginComponent},
   { path: 'admin', component: AdminComponent, canActivate:[AuthGaurd]},
   { path: 'admin/movie-add', component: MovieAddComponent, canActivate:[AuthGaurd]},
   { path: 'admin/movie/:id', component: MovieUpdateComponent, canActivate:[AuthGaurd]},

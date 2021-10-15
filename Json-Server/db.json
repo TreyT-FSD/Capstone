@@ -69,5 +69,27 @@
       "id": 3,
       "name": "Third Genre"
     }
+  ],
+  "user": [
+    {
+      "id": 1,
+      "firstName": "Timmy",
+      "lastName": "Horton",
+      "email": "123",
+      "password": "123",
+      "orderNumbers": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": 2,
+      "firstName": "Trey",
+      "lastName": "Turley",
+      "email": "tturley08@gmail.com",
+      "password": "123",
+      "orderNumbers": []
+    }
   ]
 }

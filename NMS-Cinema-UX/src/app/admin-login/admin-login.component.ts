@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Admin } from '../models/admin';
 import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
+import { AuthGaurd } from '../services/auth-gaurd.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -13,7 +14,7 @@ export class AdminLoginComponent implements OnInit {
   admin:Admin = new Admin();
   validAdmin:Admin = new Admin();
 
-  constructor(private _admSvc: AdminService, private _router: Router) { }
+  constructor(private _admSvc: AdminService, private _router: Router, private _authGaurd:AuthGaurd) { }
 
   ngOnInit(): void {
     this._admSvc.getAdmin().subscribe(
@@ -36,6 +37,8 @@ export class AdminLoginComponent implements OnInit {
       sessionStorage.setItem("isAdmin", "true");
       sessionStorage.setItem("adminId", this.validAdmin.id.toString());
       sessionStorage.setItem("adminUsername", this.validAdmin.username);
+
+      this._authGaurd.userLoguout();
 
       this._router.navigate(["admin"]);
 
