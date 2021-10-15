@@ -13,8 +13,8 @@
         <div class="text-center">
             <h3>Browse Movies</h3>
         </div>
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-            <div class="col col-lg" *ngFor="let movie of movies">
+        <div class="row row-cols-auto row-cols-md-4 g-4">
+            <div class="col col-auto" *ngFor="let movie of movies">
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title">{{movie.title}}</h5>
@@ -35,17 +35,17 @@
                             </small>
                         </h6>
 
-                        <p class="cart-text">{{movie.description}}</p>
+                        <!-- <p class="cart-text">{{movie.description}}</p> -->
                         <!-- <p class="cart-text">{{movie.language}} | {{movie.duration}}</p> -->
                         <hr>
                         <div class="row-auto">
                             <form #mf="ngForm" (ngSubmit)="addMovieToCart()">
                                 <div class="col-auto">
                                     <div class="row">
-                                        <div class="col-xl-4">
+                                        <div class="col-md-4">
                                             <label for="showtime">Showtime:</label>
                                         </div>
-                                        <div class="col-xl-8">
+                                        <div class="col col-auto">
                                             <select class="form-select form-select-sm mb-1" id="showtime"
                                                 name="showtime">
                                                 <option *ngFor="let showtime of getShowtimesFromMovie(movie)"

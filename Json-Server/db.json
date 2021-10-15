@@ -54,6 +54,42 @@
       "showtimes": "1:30pm, 4:45pm, 7:30pm",
       "availableTickets": 100,
       "active": true
+    },
+    {
+      "id": 3,
+      "title": "Movie 3",
+      "description": "This one movie has a really long description. its a lot longer than some of the other movies for some reason. Nobody knows why though.",
+      "duration": "2h 11m",
+      "genreId": "2",
+      "ticketPrice": 5,
+      "language": "EN",
+      "showtimes": "11:30am, 2:45pm, 5:30pm",
+      "availableTickets": 100,
+      "active": false
+    },
+    {
+      "id": 4,
+      "title": "Testing add again",
+      "description": "this is a descriptor",
+      "duration": "2h 5m",
+      "genreId": "3",
+      "ticketPrice": 12.23,
+      "language": "EN",
+      "showtimes": "1:30pm, 4:45pm, 7:30pm",
+      "availableTickets": 150,
+      "active": false
+    },
+    {
+      "id": 5,
+      "title": "showtime movie",
+      "description": "new movie",
+      "duration": "1h 2m",
+      "genreId": "3",
+      "ticketPrice": 4.55,
+      "language": "EN",
+      "showtimes": "1:30pm, 4:45pm, 7:30pm",
+      "availableTickets": 100,
+      "active": true
     }
   ],
   "genre": [
