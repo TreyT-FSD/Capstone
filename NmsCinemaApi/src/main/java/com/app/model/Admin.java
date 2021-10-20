@@ -19,7 +19,8 @@ public class Admin {
 	@Column
 	private String username;
 	
-	@Column String password;
+	@Column 
+	private String password;
 
 	
 	public Admin() {
