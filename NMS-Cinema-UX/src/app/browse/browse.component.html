@@ -39,7 +39,7 @@
                         <!-- <p class="cart-text">{{movie.language}} | {{movie.duration}}</p> -->
                         <hr>
                         <div class="row-auto">
-                            <form #mf="ngForm" (ngSubmit)="addMovieToCart()">
+                            <form #mf="ngForm" (ngSubmit)="addMovieToCart(movie, mf)">
                                 <div class="col-auto">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -47,10 +47,18 @@
                                         </div>
                                         <div class="col col-auto">
                                             <select class="form-select form-select-sm mb-1" id="showtime"
-                                                name="showtime">
+                                                name="showtime" ngModel required>
+
+
                                                 <option *ngFor="let showtime of getShowtimesFromMovie(movie)"
-                                                    value="showtime" style="width: auto;">
+                                                    [ngValue]="showtime" style="width: auto;" >
                                                     {{showtime}}</option>
+
+
+                                                <!-- <option *ngFor="let showtime of getShowtimesFromMovie(movie)"
+                                                    value={{showtime}} style="width: auto;">
+                                                    {{showtime}}</option> -->
+
                                             </select>
                                         </div>
                                     </div>
@@ -63,8 +71,9 @@
                                         </div>
                                         <div class="col-md-8">
                                             <select class="form-select form-select-sm mb-1" id="tickets" name="tickets"
-                                                style="width: auto;">
-                                                <option *ngFor="let num of counter(); let i = index" value="i+1">{{i+1}}
+                                                style="width: auto;" ngModel required>
+                                                <option *ngFor="let num of counter(); let i = index" value={{i+1}}>
+                                                    {{i+1}}
                                                 </option>
                                             </select>
                                         </div>
@@ -72,7 +81,8 @@
                                 </div>
 
                                 <!-- <a (click)="addMovieToCart(movie.id)" class='btn btn-primary'>Add to Cart</a> -->
-                                <input type="submit" value="Add Movie" class="btn btn-primary"btn btn-primary>
+                                <input type="submit" value="Add to Cart" class="btn btn-primary" [disabled]="mf.invalid">
+                                <!-- <div [hidden]="!mf.submitted">test</div> -->
                             </form>
                         </div>
                     </div>
