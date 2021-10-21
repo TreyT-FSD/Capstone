@@ -1,28 +1,82 @@
 <div class="row row-cols-1">
-    <div class="col col-md-4">
+    <div class="col col-xl-3">
         <h3>Genre Selection</h3>
         <div class="list-group">
-            <button class="list-group-item" style="text-align: left !important; width: 18rem;" *ngFor="let genre of genres" (click)="genreFilter(genre.id)">{{genre.name}}</button>
-                
-            
+            <button class="list-group-item" style="text-align: left !important; width: 18rem;"
+                *ngFor="let genre of genres" (click)="genreFilter(genre.id)">{{genre.name}}</button>
+
+
         </div>
     </div>
 
-    <div class="col col-md-8">
+    <div class="col col-xl-9">
         <div class="text-center">
             <h3>Browse Movies</h3>
         </div>
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-            <div class="col" *ngFor="let movie of movies">
+        <div class="row row-cols-auto row-cols-md-4 g-4">
+            <div class="col col-auto" *ngFor="let movie of movies">
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title">{{movie.title}}</h5>
-                        <p class="cart-text">{{movie.description}}</p>
-                        <p class="cart-text">{{movie.duration}}</p>
-                        <a (click)="addMovieToCart(movie.id)" class='btn btn-primary'>Add to Cart</a>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            <small>
+                                <div class="row row-cols-auto g-1">
+                                    <div class="col">{{getGenreName(movie.genreId)}}</div>
+                                    <div class="col">&bull;</div>
+                                    <div class="col">{{movie.duration}}</div>
+                                    <div class="col">&bull;</div>
+                                    <div class="col">{{movie.language}}</div>
+                                </div>
+                                <!-- <ul class="list-inline">
+                                    <li class="list-inline-item">{{getGenreName(movie.genreId)}}</li>
+                                    <li class="list-inline-item">&bull;&nbsp;&nbsp;{{movie.duration}}</li>
+                                    <li class="list-inline-item">&bull;&nbsp;&nbsp;{{movie.language}}</li>
+                                </ul> -->
+                            </small>
+                        </h6>
+
+                        <!-- <p class="cart-text">{{movie.description}}</p> -->
+                        <!-- <p class="cart-text">{{movie.language}} | {{movie.duration}}</p> -->
+                        <hr>
+                        <div class="row-auto">
+                            <form #mf="ngForm" (ngSubmit)="addMovieToCart()">
+                                <div class="col-auto">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="showtime">Showtime:</label>
+                                        </div>
+                                        <div class="col col-auto">
+                                            <select class="form-select form-select-sm mb-1" id="showtime"
+                                                name="showtime">
+                                                <option *ngFor="let showtime of getShowtimesFromMovie(movie)"
+                                                    value="showtime" style="width: auto;">
+                                                    {{showtime}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-auto">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="tickets">Tickets:</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <select class="form-select form-select-sm mb-1" id="tickets" name="tickets"
+                                                style="width: auto;">
+                                                <option *ngFor="let num of counter(); let i = index" value="i+1">{{i+1}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <a (click)="addMovieToCart(movie.id)" class='btn btn-primary'>Add to Cart</a> -->
+                                <input type="submit" value="Add Movie" class="btn btn-primary"btn btn-primary>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

@@ -14,6 +14,8 @@ export class BrowseComponent implements OnInit {
   movies: Array<Movie> = new Array<Movie>();
   genres : Array<Genre> = new Array<Genre>();
 
+  maxTicketQuantity = 10;
+
   constructor(
     private _movieSvc: MovieService,
     private _genreSvc: GenreService) { }
@@ -44,16 +46,25 @@ export class BrowseComponent implements OnInit {
       );
   }
 
-
-  addMovieToCart(id:number){
+  addMovieToCart(){
     // TODO: Implement add to cart
-    console.log("Add Product to cart: " + id);
-    
   }
 
   genreFilter(id:number){
     // TODO: implement genre filtering
     console.log("Genre Id: " + id);    
+  }
+
+  getGenreName(id: number): string | undefined {
+    return this.genres.find(element => element.id == id)?.name;
+  }
+
+  counter(): Array<number>{
+    return new Array(this.maxTicketQuantity);
+  }
+
+  getShowtimesFromMovie(movie:Movie): Array<string>{
+    return movie.showtimes.split(",");
   }
 
 }

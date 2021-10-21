@@ -8,7 +8,8 @@ import { Genre } from "../models/genre";
 })
 export class GenreService {
 
-  GENRE_API: string = "http://localhost:3000";
+  //GENRE_API: string = "http://localhost:3000";
+  GENRE_API: string = "http://localhost:8085"; //SpringBoot Rest API
 
   constructor(private _http: HttpClient) { }
 

@@ -8,7 +8,8 @@ import { User } from '../models/user';
 })
 export class UserService {
 
-  USER_API: string = "http://localhost:3000";
+  //USER_API: string = "http://localhost:3000";
+  USER_API: string = "http://localhost:8085"; //SpringBoot Rest API
 
   constructor(private _http: HttpClient) { }
 
