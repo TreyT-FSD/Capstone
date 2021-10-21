@@ -26,10 +26,13 @@ import { UserLoginComponent } from './user-login/user-login.component';
 import { UserService } from './services/user.service';
 import { MovieService } from './services/movie.service';
 import { GenreService } from './services/genre.service';
+import { OrderService } from './services/order.service';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
-  declarations: [    
-    MainComponent, PageNotFoundComponent, AboutComponent, ContactComponent, BrowseComponent, AdminComponent, AdminLoginComponent, MoviesComponent, MovieAddComponent, MovieUpdateComponent, GenresComponent, GenreAddComponent, GenreUpdateComponent, UsersComponent, UserRegistrationComponent, UserLoginComponent
+  declarations: [
+    MainComponent, PageNotFoundComponent, AboutComponent, ContactComponent, BrowseComponent, AdminComponent, AdminLoginComponent, MoviesComponent, MovieAddComponent, MovieUpdateComponent, GenresComponent, GenreAddComponent, GenreUpdateComponent, UsersComponent, UserRegistrationComponent, UserLoginComponent, CartComponent, CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,7 @@ import { GenreService } from './services/genre.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AdminService, AuthGaurd, UserService, MovieService, GenreService],
+  providers: [AdminService, AuthGaurd, UserService, MovieService, GenreService, OrderService],
   bootstrap: [MainComponent]
 })
 export class AppModule { }
