@@ -11,19 +11,12 @@ import { AuthGaurd } from '../services/auth-gaurd.service';
 })
 export class AdminLoginComponent implements OnInit {
 
-  admin:Admin = new Admin();
-  validAdmin:Admin = new Admin();
+  admin: Admin = new Admin();
 
-  constructor(private _admSvc: AdminService, private _router: Router, private _authGaurd:AuthGaurd) { }
+  constructor(private _admSvc: AdminService, private _router: Router, private _authGaurd: AuthGaurd) { }
 
   ngOnInit(): void {
-    this._admSvc.getAdmin().subscribe(
-      result => {
-        this.validAdmin = result
-      },
-      error => {
-        console.log(error);
-      });
+
   }
 
   /**
@@ -31,22 +24,34 @@ export class AdminLoginComponent implements OnInit {
    * If true, sets up some session values to indicate the user in an admin.
    */
   login() {
-    if (this.validAdmin.username.toLowerCase() == this.admin.username.toLowerCase() &&
-      this.validAdmin.password == this.admin.password) {
+    let validAdmin = new Admin();
 
-      sessionStorage.setItem("isAdmin", "true");
-      sessionStorage.setItem("adminId", this.validAdmin.id.toString());
-      sessionStorage.setItem("adminUsername", this.validAdmin.username);
+    //get existing admin
+    this._admSvc.getAdmin().subscribe(
+      result => {
+        validAdmin = result;
 
-      this._authGaurd.userLoguout();
+        if (validAdmin.username.toLowerCase() == this.admin.username.toLowerCase() &&
+          validAdmin.password == this.admin.password) {
 
-      this._router.navigate(["admin"]);
+          sessionStorage.setItem("isAdmin", "true");
+          sessionStorage.setItem("adminId", validAdmin.id.toString());
+          sessionStorage.setItem("adminUsername", validAdmin.username);
 
-    } else {
-      // console.log("admin login failed");
-      alert("Login Failed.")
-    }
+          this._authGaurd.userLoguout();
 
+          this._router.navigate(["admin"]);
+          return;
+
+        } else {
+          // console.log("admin login failed");
+          alert("Login Failed, invalid credentials.")
+          return;
+        }
+      },
+      error => {
+        console.log("An error occured while retreiving the admin credentials. Err: " + error);
+      });
   }
 
 }
