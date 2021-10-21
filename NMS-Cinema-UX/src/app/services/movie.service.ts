@@ -8,7 +8,8 @@ import { Movie } from "../models/movie";
 })
 export class MovieService {
 
-  MOVIE_API: string = "http://localhost:3000";
+  //MOVIE_API: string = "http://localhost:3000";
+  MOVIE_API: string = "http://localhost:8085"; //SpringBoot Rest API
 
   constructor(private _http: HttpClient) { }
 
