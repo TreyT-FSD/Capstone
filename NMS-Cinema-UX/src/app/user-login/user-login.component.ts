@@ -1,5 +1,6 @@
+import { flatten } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../models/user';
 import { AuthGaurd } from '../services/auth-gaurd.service';
 import { UserService } from '../services/user.service';
@@ -13,10 +14,17 @@ export class UserLoginComponent implements OnInit {
 
   user: User = new User();
   existingUser: User = new User();
+  redirectUrl: string = "";
 
-  constructor(private _userSvc: UserService, private _router: Router, private _authGaurd:AuthGaurd) { }
+  constructor(
+    private _userSvc: UserService,
+    private _router: Router,
+    private _authGaurd: AuthGaurd,
+    private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.redirectUrl = this._route.snapshot.queryParams['redirect'] || '/';
+    console.log(this.redirectUrl);
 
   }
 
@@ -33,7 +41,10 @@ export class UserLoginComponent implements OnInit {
           // TODO: refactor how we handle user/admin logging in/out
           this._authGaurd.adminLogout();
 
-          this._router.navigate(['user']);
+          //redirect as needed
+          this._router.navigateByUrl(this.redirectUrl);
+
+          // this._router.navigate(['user']);
         }
         else {
           alert("Invalid Credentials");
@@ -46,5 +57,11 @@ export class UserLoginComponent implements OnInit {
     );
   }
 
+  isCheckoutRedirect(): boolean {
+    if(this.redirectUrl == "/cart/checkout"){
+      return true;
+    }
+    return false;
+  }
 
 }
