@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm, NgModel } from '@angular/forms';
+import { Cart } from '../models/cart';
+import { CartItem } from '../models/CartItem';
 import { Genre } from '../models/genre';
 import { Movie } from '../models/movie';
+import { CartService } from '../services/cart.service';
 import { GenreService } from '../services/genre.service';
 import { MovieService } from '../services/movie.service';
 
@@ -12,58 +16,96 @@ import { MovieService } from '../services/movie.service';
 export class BrowseComponent implements OnInit {
 
   movies: Array<Movie> = new Array<Movie>();
-  genres : Array<Genre> = new Array<Genre>();
+  genres: Array<Genre> = new Array<Genre>();
+
+  time: string = "";
+  quantity: number = 0;
+
 
   maxTicketQuantity = 10;
 
   constructor(
     private _movieSvc: MovieService,
-    private _genreSvc: GenreService) { }
+    private _genreSvc: GenreService,
+    private _cartSvc: CartService) { }
 
   ngOnInit(): void {
     this.getMovies();
     this.getGenres();
+
+    //check to see if there is a cart in local storage. 
+    //if there is update the cart svc
+    this._cartSvc.initCartFromStorage();
   }
 
-  getMovies(){
+  getMovies() {
     this._movieSvc.getMovies().subscribe(
-      result=>{
-        this.movies=result;
+      result => {
+        this.movies = result;
       },
-      error=>{
+      error => {
         console.log("error occured while getting movies");
       });
   }
 
-  getGenres(){
+  getGenres() {
     this._genreSvc.getGenres().subscribe(
-      result=>{
-        this.genres=result;
+      result => {
+        this.genres = result;
       },
-      error=>{
+      error => {
         console.log("Failed to retrieve the genres");
       }
-      );
+    );
   }
 
-  addMovieToCart(){
-    // TODO: Implement add to cart
+  addMovieToCart(movie: Movie, form: NgForm) {
+
+    let cartItem = new CartItem();
+    cartItem.movie = movie;
+    cartItem.showtime = form.value.showtime;
+    cartItem.numTickets = parseInt(form.value.tickets);
+    cartItem.subTotal = cartItem.numTickets * movie.ticketPrice;    
+    
+    this._cartSvc.addToCart(cartItem);
+
+    this._cartSvc.saveCart();
+
+    // TODO: May want to consider having the cart also stored is local storage so that it persists between browser session
+
+    form.resetForm();
+
+    // TODO: Think about a nice way to notify user that add to cart has occured
+    window.alert('Your product has been added to the cart!');
+
+    //a sleeping function
+
+    // (async () => {
+    //   // Do something before delay
+    //   console.log('before delay')
+
+    //   await new Promise( resolve => setTimeout(resolve, 2000) );
+
+    //   // Do something after
+    //   console.log('after delay')
+
+    // })();
   }
 
-  genreFilter(id:number){
+  genreFilter(id: number) {
     // TODO: implement genre filtering
-    console.log("Genre Id: " + id);    
+    console.log("Genre Id: " + id);
   }
 
   getGenreName(id: number): string | undefined {
     return this.genres.find(element => element.id == id)?.name;
   }
 
-  counter(): Array<number>{
+  counter(): Array<number> {
     return new Array(this.maxTicketQuantity);
   }
 
-  getShowtimesFromMovie(movie:Movie): Array<string>{
+  getShowtimesFromMovie(movie: Movie): Array<string> {
     return movie.showtimes.split(",");
   }
 

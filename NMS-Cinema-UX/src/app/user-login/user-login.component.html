@@ -1,4 +1,7 @@
 <div style="width: 18rem;">
+    <div *ngIf="isCheckoutRedirect()">
+        <p>Please login to continue with checkout</p>
+    </div>
     <h3>User Login</h3>
     <br />
     <form #userForm="ngForm" (ngSubmit)="login()">
@@ -23,6 +26,6 @@
 
         </div>
         <input type="submit" value="Login" class="btn btn-success" [disabled]="userForm.invalid"> |
-        <a class="btn btn-secondary" routerLink="/">Back</a>
+        <a class="btn btn-secondary" routerLink="{{redirectUrl}}">Back</a>
     </form>
 </div>

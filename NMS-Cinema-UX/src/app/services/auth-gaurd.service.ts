@@ -17,7 +17,7 @@ export class AuthGaurd implements CanActivate {
         // console.log(route.url[0].path);
         // check which url we are coming from
         let urlPath = route.url[0].path;
-        if(urlPath === "admin"){
+        if(urlPath == "admin"){
             if(this.isAdmin()){
                 return true;
             }
@@ -26,13 +26,24 @@ export class AuthGaurd implements CanActivate {
                 return false;
             }
         }
-        if(urlPath === "user"){
+        if(urlPath == "user"){
             if(this.isUser()){
                 return true;
             }
             else{
                 this._router.navigate(["user-login"]);
                 return false;
+            }
+        }
+        if(urlPath == "cart"){
+            if(route.url[1].path == "checkout"){
+                if(this.isUser()){
+                    return true;
+                }
+                else{
+                    this._router.navigate(["user-login"], {queryParams: {redirect: state.url}});
+                    return false;
+                }
             }
         }
         return false;

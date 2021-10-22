@@ -1,5 +1,6 @@
 package com.app.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,21 @@ public class UserServiceImp implements UserService{
 	@Override
 	public List<User> getUsers() {
 		return userDao.findAll();
+	}
+
+	public List<User> findUserByEmail(String email){
+
+		List<User> result = new ArrayList<User>();
+
+		userDao.findAll().forEach(user -> {
+			if(user.getEmail().compareTo(email)==0){
+				result.add(user);
+			}
+		});
+
+		//if the result array has more than one item then something went wrong
+		
+		return result;
 	}
 
 	@Override
