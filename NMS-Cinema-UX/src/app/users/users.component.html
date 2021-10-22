@@ -1,19 +1,39 @@
 <p>Hello, {{user.firstName}}</p>
+<button (click)="logout()">Logout</button>
+<br><br>
 
 <h3>Order History</h3>
-<!-- TODO: This will probably get replaced by an order component.
-     Another option would be to link to it here. -->
 <table class="table">
     <thead>
         <tr>
             <th>Order Number</th>
+            <th>Movie</th>
+            <th>Ticket Quantity</th>
+            <th>Total</th>
+            <th>Order Total</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let orderNum of user.orderNumbers">
-            <td>{{orderNum}}</td>
+        <tr *ngFor="let order of orders">
+            <td>{{order.id}}</td>
+            <td>
+                <li style="list-style: none;" *ngFor="let cartItem of order.cart.cartItems">
+                    {{cartItem.movie.title}}
+                </li>
+            </td>
+            <td>
+                <li style="list-style: none;" *ngFor="let cartItem of order.cart.cartItems">
+                    {{cartItem.numTickets}}
+                </li>
+            </td>
+            <td>
+                <li style="list-style: none;" *ngFor="let cartItem of order.cart.cartItems">
+                    ${{cartItem.subTotal.toFixed(2)}}
+                </li>
+            </td>
+            <td>
+                ${{order.cart.totalPrice.toFixed(2)}}
+            </td>
         </tr>
     </tbody>
 </table>
-<br><br>
-<button (click)="logout()">Logout</button>
