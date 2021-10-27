@@ -1,11 +1,32 @@
 <div class="row row-cols-1">
     <div class="col col-xl-3">
-        <h3>Genre Selection</h3>
-        <div class="list-group">
-            <button class="list-group-item" style="text-align: left !important; width: 18rem;"
-                *ngFor="let genre of genres" (click)="genreFilter(genre.id)">{{genre.name}}</button>
 
-
+        <div class="row">
+            <h3>Movie Search</h3>
+            <form #msf="ngForm">
+                <div class="mb-3">
+                    <input type="text" id="movieSearch" name="movieSearch" class="form-control mb-3" style="max-width: 200px;" required [(ngModel)]="searchTerm">
+                    <div class="row">
+                        <div class="col col-auto"><input type="submit" (click)="filterMovies(searchTerm)" value="Search" class="btn btn-primary" [disabled]="msf.invalid"></div>
+                        <div class="col col-auto"><input type="reset" (click)="filterMovies('')" value="Clear Search" class="btn btn-secondary"></div>
+                    </div>
+                </div>
+            </form>
+            
+            
+        </div>
+        <!-- <hr> -->
+        <div class="row">
+            <h3>Genre Selection</h3>
+            <div class="list-group mb-3" style="max-width: 75%; margin-left: 10px">
+                <button class="list-group-item" style="text-align: left !important; width: 18rem;"
+                    *ngFor="let genre of genres" (click)="genreFilter(genre.id)">{{genre.name}}</button>
+            </div>
+            <div class="row">
+                <div class="col col-auto"><input type="reset" (click)="clearGenreFilter()" value="Clear Genre Filter" class="btn btn-secondary"></div>
+                <div class="col col-auto"></div>
+            </div>
+            
         </div>
     </div>
 
@@ -51,7 +72,7 @@
 
 
                                                 <option *ngFor="let showtime of getShowtimesFromMovie(movie)"
-                                                    [ngValue]="showtime" style="width: auto;" >
+                                                    [ngValue]="showtime" style="width: auto;">
                                                     {{showtime}}</option>
 
 
@@ -81,7 +102,8 @@
                                 </div>
 
                                 <!-- <a (click)="addMovieToCart(movie.id)" class='btn btn-primary'>Add to Cart</a> -->
-                                <input type="submit" value="Add to Cart" class="btn btn-primary" [disabled]="mf.invalid">
+                                <input type="submit" value="Add to Cart" class="btn btn-primary"
+                                    [disabled]="mf.invalid">
                                 <!-- <div [hidden]="!mf.submitted">test</div> -->
                             </form>
                         </div>

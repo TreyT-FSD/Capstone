@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { Cart } from '../models/cart';
 import { CartItem } from '../models/CartItem';
@@ -15,8 +15,11 @@ import { MovieService } from '../services/movie.service';
 })
 export class BrowseComponent implements OnInit {
 
+  allMovies: Array<Movie> = new Array<Movie>();
   movies: Array<Movie> = new Array<Movie>();
   genres: Array<Genre> = new Array<Genre>();
+  searchTerm: string = "";
+  isGenreFilterApplied: boolean = false;
 
   time: string = "";
   quantity: number = 0;
@@ -41,7 +44,8 @@ export class BrowseComponent implements OnInit {
   getMovies() {
     this._movieSvc.getMovies().subscribe(
       result => {
-        this.movies = result;
+        this.allMovies = result;
+        this.movies=this.allMovies;
       },
       error => {
         console.log("error occured while getting movies");
@@ -93,8 +97,36 @@ export class BrowseComponent implements OnInit {
   }
 
   genreFilter(id: number) {
-    // TODO: implement genre filtering
-    console.log("Genre Id: " + id);
+    let movieSubset = new Array<Movie>();
+    this.allMovies.forEach(element => {
+      if (element.genreId == id) {
+        movieSubset.push(element);
+      }
+    });
+    this.movies = movieSubset;
+  }
+
+  clearGenreFilter(){
+    this.movies=this.allMovies;
+  }
+
+  filterMovies(searchStr:string){
+    let movieSubset = new Array<Movie>();
+
+    //if searchTerm not empty
+    if (searchStr != "") {
+      this.allMovies.forEach(element => {
+        if (element.title.toLowerCase().includes(searchStr.toLowerCase())) {
+          movieSubset.push(element);
+        }
+      });
+      //console.log(productSubset);
+      this.movies = movieSubset;
+    }
+    else {
+      this.searchTerm = "";
+      this.movies=this.allMovies;
+    }
   }
 
   getGenreName(id: number): string | undefined {
