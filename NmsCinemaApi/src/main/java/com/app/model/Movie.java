@@ -22,7 +22,7 @@ public class Movie {
 	@Column
 	private String description;
 	
-	@Column
+	@Column(columnDefinition ="LONGTEXT")
 	private String duration;
 	
 	@Column
