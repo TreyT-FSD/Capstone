@@ -44,7 +44,12 @@ export class BrowseComponent implements OnInit {
   getMovies() {
     this._movieSvc.getMovies().subscribe(
       result => {
-        this.allMovies = result;
+        // FIX: This throws an error when the result is an empty list
+        result.forEach(movie => {
+          if(movie.active){
+            this.allMovies.push(movie);
+          }
+        });
         this.movies=this.allMovies;
       },
       error => {
