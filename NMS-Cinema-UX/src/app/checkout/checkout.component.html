@@ -16,7 +16,8 @@
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <div>
                                 <h6 class="my-0">{{cartItem.movie.title}}</h6>
-                                <small class="text-muted">{{cartItem.showtime}}, {{cartItem.numTickets}} Tickets </small>
+                                <small class="text-muted">{{cartItem.showtime}}, {{cartItem.numTickets}} Tickets
+                                </small>
                             </div>
                             <span class="text-muted">${{cartItem.subTotal.toFixed(2)}}</span>
                         </li>
@@ -93,8 +94,8 @@
 
                         <div class="col-md-4">
                             <label for="state" class="form-label">State</label>
-                            <select class="form-select" id="state" name="state" required [(ngModel)]="customerBilling.state"
-                                #state="ngModel">
+                            <select class="form-select" id="state" name="state" required
+                                [(ngModel)]="customerBilling.state" #state="ngModel">
                                 <option value="">Choose...</option>
                                 <option>Texas</option>
                             </select>
@@ -142,7 +143,8 @@
                         <div class="col-md-6">
                             <label for="cc-number" class="form-label">Credit card number</label>
                             <input type="text" class="form-control" id="cc-number" name="ccNumber" required
-                                minlength="16" maxlength="16" [(ngModel)]="customerBilling.ccNumber" #ccNumber="ngModel">
+                                minlength="16" maxlength="16" [(ngModel)]="customerBilling.ccNumber"
+                                #ccNumber="ngModel">
                             <div *ngIf="ccNumber.invalid && (ccNumber.dirty || ccNumber.touched)">
                                 Credit card number is required
                             </div>
@@ -190,13 +192,27 @@
                 <table class="table table-sm ">
                     <thead>
                         <tr>
-                            <th>Product</th>
+                            <th>Movie</th>
+                            <th>Ticket Quantity</th>
                             <th>Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let cartItem of cartItemSnapshot; let i = index">
-                            <td>{{cartItem.movie.title}}</td>
+                            <td>
+                                <table class="table table-borderless table-sm">
+                                    <thead></thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{cartItem.movie.title}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><small>Showtime: {{cartItem.showtime}}</small></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td>{{cartItem.numTickets}}</td>
                             <td>${{cartItem.subTotal.toFixed(2)}}</td>
                         </tr>
                     </tbody>
@@ -207,9 +223,9 @@
                 </div>
             </div>
             <div class="col-sm"></div>
-          </div>
+        </div>
 
-          <a class="btn btn-primary mt-4" routerLink="/">Continue Shopping</a>
+        <a class="btn btn-primary mt-4" routerLink="/">Continue Shopping</a>
 
     </div>
 
