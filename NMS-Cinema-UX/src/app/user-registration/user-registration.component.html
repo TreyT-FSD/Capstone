@@ -39,12 +39,19 @@
             <a class="btn btn-secondary" routerLink="/browse">Back</a>
         </div>
         <div class="submitted-message" *ngIf="rf.submitted">
-            <h3>Registration Complete!</h3>
-            <p>Welcome to NMS, {{ firstName.value }}</p>
-            <br>
-            <br>
-            <a class="btn btn-secondary" routerLink="/browse">Browse Movies</a> |
-            <a class="btn btn-secondary" routerLink="/user">User Profile</a>
+            <div *ngIf="success">
+                <h3>Registration Complete!</h3>
+                <p>Welcome to NMS, {{ firstName.value }}</p>
+                <br>
+                <br>
+                <a class="btn btn-secondary" routerLink="/browse">Browse Movies</a> |
+                <a class="btn btn-secondary" routerLink="/user">User Profile</a>
+            </div>
+            <div *ngIf="!success">
+                <p>An user with this email already exists. Please login if you are an existing user or use different email to register.</p>
+                <button class="btn btn-secondary" (click)="resetRegistration(rf)">Register</button> |
+                <a class="btn btn-secondary" routerLink="/user-login">Login</a>
+            </div>
         </div>
     </div>
     <div class="col col-9"></div>
