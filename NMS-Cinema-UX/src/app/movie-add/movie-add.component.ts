@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Genre } from '../models/genre';
 import { Movie } from '../models/movie';
 import { GenreService } from '../services/genre.service';
@@ -13,6 +14,7 @@ export class MovieAddComponent implements OnInit {
 
   movie: Movie = new Movie();
   genres: Array<Genre> = new Array<Genre>();
+  isMovieAdded: boolean = false;
 
   constructor(private _movieSvc: MovieService, private _genreSvc: GenreService) { }
 
@@ -31,16 +33,20 @@ export class MovieAddComponent implements OnInit {
   }
 
   addMovie() {
-    // TODO: remove this logging
-    console.log(this.movie);
-    
     this._movieSvc.addMovie(this.movie).subscribe(
-      result=>{},
+      result=>{
+        if(result == null){
+          this.isMovieAdded=false;
+        }
+      },
       error=>{
-        console.log("Error occured while added the movie. ErrMsg: " + error);
-        
+        console.log("Error occured while trying to add the movie");
       });
+  }
 
+  resetAddMovieForm(mf:NgForm){
+    mf.resetForm();
+    this.isMovieAdded=true;
   }
 
 }

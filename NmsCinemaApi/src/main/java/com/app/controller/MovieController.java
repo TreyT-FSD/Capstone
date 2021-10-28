@@ -57,22 +57,26 @@ public class MovieController {
 	// add
 	@PostMapping("")
 	public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
-		Movie m = movieSvc.addMovie(
-			new Movie(
-				movie.getTitle(),
-				movie.getDescription(),
-				movie.getDuration(),
-				movie.getGenreId(),
-				movie.getTicketPrice(),
-				movie.getLanguage(),
-				movie.getShowtimes(),
-				movie.getAvailableTickets(),
-				movie.isActive()
-			));
-		if(m != null) {
-			return new ResponseEntity<Movie>(m, HttpStatus.OK);
-		}
-		return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		try{
+			Movie m = movieSvc.addMovie(
+				new Movie(
+					movie.getTitle(),
+					movie.getDescription(),
+					movie.getDuration(),
+					movie.getGenreId(),
+					movie.getTicketPrice(),
+					movie.getLanguage(),
+					movie.getShowtimes(),
+					movie.getAvailableTickets(),
+					movie.isActive()
+				));
+			if(m != null) {
+				return new ResponseEntity<Movie>(m, HttpStatus.OK);
+			}
+		} catch (Exception e){
+			return new ResponseEntity<>(null, HttpStatus.OK);	
+		}	
+		return new ResponseEntity<>(null, HttpStatus.OK);
 
 	}
 
@@ -88,7 +92,7 @@ public class MovieController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Movie> updateMovieById(@PathVariable long id, @RequestBody Movie movie) {
 		Movie m = movieSvc.updateMovie(movie, id);
-		if(m != null) {
+		if (m != null) {
 			return new ResponseEntity<Movie>(m, HttpStatus.OK);
 		}
 		return new ResponseEntity<Movie>(m, HttpStatus.INTERNAL_SERVER_ERROR);

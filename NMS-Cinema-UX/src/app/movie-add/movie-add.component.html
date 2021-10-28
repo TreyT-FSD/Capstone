@@ -46,15 +46,17 @@
         <div *ngIf="language.invalid && (language.dirty || language.touched)">
             <div *ngIf="language.errors?.required">A language is required</div>
         </div>
-        
-        <label for="showtimes">Movie Showtimes <small>(please enter a comma separated list of showtimes. Ex: 1:30pm, 3:45pm)</small></label>
+
+        <label for="showtimes">Movie Showtimes <small>(please enter a comma separated list of showtimes. Ex: 1:30pm,
+                3:45pm)</small></label>
         <!-- <input type="text" id="showtimes" name="showtimes" class="form-control mb-3" required
             [(ngModel)]="movie.showtimes" #showtimes="ngModel"> -->
-        <textarea class="form-control mb-3" id="showtimes" name="showtimes" required [(ngModel)]="movie.showtimes" #showtimes="ngModel"></textarea>
+        <textarea class="form-control mb-3" id="showtimes" name="showtimes" required [(ngModel)]="movie.showtimes"
+            #showtimes="ngModel"></textarea>
         <div *ngIf="showtimes.invalid && (showtimes.dirty || showtimes.touched)">
             <div *ngIf="showtimes.errors?.required">A showtime is required</div>
         </div>
-        
+
         <label for="availableTickets">Available Tickets</label>
         <input type="number" id="availableTickets" name="availableTickets" class="form-control mb-3" required
             [(ngModel)]="movie.availableTickets" #availableTickets="ngModel">
@@ -63,8 +65,8 @@
         </div>
 
         <div class="mb-3 form-check">
-            <input type="checkbox" id="active" name="active" class="form-check-input"
-                [(ngModel)]="movie.active" #active="ngModel">
+            <input type="checkbox" id="active" name="active" class="form-check-input" [(ngModel)]="movie.active"
+                #active="ngModel">
             <label for="active">Activate Movie?</label>
         </div>
 
@@ -74,10 +76,19 @@
 
     </div>
 
+
     <div class="submitted-message" *ngIf="mf.submitted">
-        <p>You've submited movie: {{ mf.value.name }}</p>
-        <button (click)="mf.resetForm({})" class="btn btn-secondary">Add Another Movie</button> |
-        <a class="btn btn-secondary" routerLink="/admin">Back to Admin</a>
+        <div *ngIf="isMovieAdded">
+            <p>You've submited movie: {{ mf.value.name }}</p>
+            <button (click)="mf.resetForm({})" class="btn btn-secondary">Add Another Movie</button> |
+            <a class="btn btn-secondary" routerLink="/admin">Back to Admin</a>
+        </div>
+        <div *ngIf="!isMovieAdded">
+            <p>An error occured while trying to submit the movie. Please try again.</p>
+            <button class="btn btn-secondary" (click)="resetAddMovieForm(mf)">Add Movie</button> |
+            <a class="btn btn-secondary" routerLink="/admin">Back to Admin</a>
+        </div>
     </div>
+    
 
 </form>
