@@ -14,7 +14,7 @@ export class MovieAddComponent implements OnInit {
 
   movie: Movie = new Movie();
   genres: Array<Genre> = new Array<Genre>();
-  isMovieAdded: boolean = false;
+  isMovieAdded: boolean = true;
 
   constructor(private _movieSvc: MovieService, private _genreSvc: GenreService) { }
 
