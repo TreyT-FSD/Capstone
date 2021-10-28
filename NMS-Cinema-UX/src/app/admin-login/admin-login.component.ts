@@ -12,6 +12,7 @@ import { AuthGaurd } from '../services/auth-gaurd.service';
 export class AdminLoginComponent implements OnInit {
 
   admin: Admin = new Admin();
+  loginFailed: boolean = false;
 
   constructor(private _admSvc: AdminService, private _router: Router, private _authGaurd: AuthGaurd) { }
 
@@ -24,29 +25,33 @@ export class AdminLoginComponent implements OnInit {
    * If true, sets up some session values to indicate the user in an admin.
    */
   login() {
-    let validAdmin = new Admin();
+    let validAdmin = new Array<Admin>();
 
     //get existing admin
     this._admSvc.getAdmin().subscribe(
       result => {
-        validAdmin = result;
+        // check for invalid or empty result
+        if (result != null) {
+          validAdmin = result;
 
-        if (validAdmin.username.toLowerCase() == this.admin.username.toLowerCase() &&
-          validAdmin.password == this.admin.password) {
+          if (validAdmin[0].username.toLowerCase() == this.admin.username.toLowerCase() &&
+            validAdmin[0].password == this.admin.password) {
 
-          sessionStorage.setItem("isAdmin", "true");
-          sessionStorage.setItem("adminId", validAdmin.id.toString());
-          sessionStorage.setItem("adminUsername", validAdmin.username);
+            sessionStorage.setItem("isAdmin", "true");
+            sessionStorage.setItem("adminId", validAdmin[0].id.toString());
+            sessionStorage.setItem("adminUsername", validAdmin[0].username);
 
-          this._authGaurd.userLoguout();
+            this._authGaurd.userLoguout();
 
-          this._router.navigate(["admin"]);
-          return;
-
-        } else {
-          // console.log("admin login failed");
-          alert("Login Failed, invalid credentials.")
-          return;
+            this._router.navigate(["admin"]);
+          } else {
+            // console.log("admin login failed");
+            alert("Login Failed, invalid credentials.")
+          }
+        }
+        else{
+          console.log("No admin found");
+          alert("No admin found")
         }
       },
       error => {

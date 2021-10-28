@@ -13,8 +13,8 @@ export class AdminService {
 
   constructor(private _http: HttpClient) { }
 
-  getAdmin(): Observable<Admin> {
-    return this._http.get<Admin>(this.ADMIN_API + "/admin/1");
+  getAdmin(): Observable<Admin[]> {
+    return this._http.get<Admin[]>(this.ADMIN_API + "/admin?username=admin");
   }
 
   updatePassword(admin: Admin): Observable<Admin> {

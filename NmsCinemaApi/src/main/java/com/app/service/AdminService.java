@@ -9,6 +9,7 @@ public interface AdminService {
 
 	public List<Admin> getAdmins();
 	public Optional<Admin> findAdminById(long id);
+	public List<Admin> findAdminByUsername(String username);
 	public Admin addAdmin(Admin admin);
 	public void deleteAdminById(long id);
 	public Admin updateAdmin(Admin admin, long id);

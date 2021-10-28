@@ -26,6 +26,26 @@ public class AdminServiceImp implements AdminService {
 	}
 
 	@Override
+	public List<Admin> findAdminByUsername(String username){
+		List<Admin> admins = adminDao.findAll();
+
+		if(admins.size() == 1){
+			return admins;
+		}
+		else if (admins.size() == 0){
+			//bootstrap the app by adding an admin to the db
+			Admin adm = new Admin("admin", "12345");
+			adm = addAdmin(adm);
+			admins.add(adm);
+			return admins;
+		} 
+		else{
+			// somehow there is more than one admin and thats not good
+			return null;
+		}
+	}
+
+	@Override
 	public Admin addAdmin(Admin admin) {
 		return adminDao.save(new Admin(admin.getUsername(), admin.getPassword()));
 	}

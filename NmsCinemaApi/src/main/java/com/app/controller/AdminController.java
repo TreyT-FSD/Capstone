@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.model.Admin;
@@ -26,8 +27,38 @@ public class AdminController {
 	@Autowired
 	AdminServiceImp adminSvc;
 	
+	// @GetMapping("")
+	// public ResponseEntity<List<Admin>> getAdmins(){
+	// 	try {
+	// 		List<Admin> admins = new ArrayList<Admin>();
+	// 		adminSvc.getAdmins().forEach(admins::add);
+			
+	// 		if(admins.isEmpty()) {
+	// 			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+	// 		}
+	// 		else {
+	// 			return new ResponseEntity<List<Admin>>(admins, HttpStatus.OK);
+	// 		}
+			
+	// 	} catch (Exception e) {
+	// 		return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	// 	}
+	// }
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Admin> getAdminById(@PathVariable long id){
+		Optional<Admin> a = adminSvc.findAdminById(id);
+		if(a.isPresent()) {
+			return new ResponseEntity<>(a.get(),HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+	}
+
 	@GetMapping("")
-	public ResponseEntity<List<Admin>> getAdmins(){
+	public ResponseEntity<List<Admin>> getAdminByUsername(@RequestParam("username") Optional<String> username){
+		if(username.isPresent()){
+			return new ResponseEntity<List<Admin>>(adminSvc.findAdminByUsername(username.get()), HttpStatus.OK);
+		}
 		try {
 			List<Admin> admins = new ArrayList<Admin>();
 			adminSvc.getAdmins().forEach(admins::add);
@@ -42,15 +73,6 @@ public class AdminController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	}
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<Admin> getAdminById(@PathVariable long id){
-		Optional<Admin> a = adminSvc.findAdminById(id);
-		if(a.isPresent()) {
-			return new ResponseEntity<>(a.get(),HttpStatus.OK);
-		}
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
 	@PutMapping("/{id}")
