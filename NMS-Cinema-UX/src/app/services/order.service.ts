@@ -8,8 +8,8 @@ import { Order } from '../models/order';
 })
 export class OrderService {
 
-  ORDER_API: string = "http://localhost:3000";
-  //ORDER_API: string = "http://localhost:8085";
+  // ORDER_API: string = "http://localhost:3000";
+  ORDER_API: string = "http://localhost:8085";
 
   constructor(private _http: HttpClient) { }
 
