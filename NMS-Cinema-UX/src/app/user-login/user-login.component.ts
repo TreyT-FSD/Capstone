@@ -15,6 +15,7 @@ export class UserLoginComponent implements OnInit {
   user: User = new User();
   existingUser: User = new User();
   redirectUrl: string = "";
+  loginFailed: boolean = false;
 
   constructor(
     private _userSvc: UserService,
@@ -25,31 +26,33 @@ export class UserLoginComponent implements OnInit {
   ngOnInit(): void {
     this.redirectUrl = this._route.snapshot.queryParams['redirect'] || '/';
     console.log(this.redirectUrl);
-
   }
 
   login() {
     this._userSvc.getUserByEmail(this.user).subscribe(
       result => {
-        if (this.user.email === result[0].email) {
-          sessionStorage.setItem("isUser", "true");
+        if (result.length != 0) {
+          if (this.user.email === result[0].email &&
+              this.user.password === result[0].password) {
+              
+            sessionStorage.setItem("isUser", "true");
 
-          result[0].password = "";
-          sessionStorage.setItem("user", JSON.stringify(result[0]));
+            result[0].password = "";
+            sessionStorage.setItem("user", JSON.stringify(result[0]));
 
-          //if they were previosuly logged in as an user log them out
-          // TODO: refactor how we handle user/admin logging in/out
-          this._authGaurd.adminLogout();
+            this._authGaurd.adminLogout();
 
-          //redirect as needed
-          this._router.navigateByUrl(this.redirectUrl);
-
-          // this._router.navigate(['user']);
+            //redirect as needed
+            this._router.navigateByUrl(this.redirectUrl);
+          }
+          else {
+            this.loginFailed = false;
+            alert("Invalid Credentials.");
+          }
         }
         else {
-          alert("Invalid Credentials");
+          this.loginFailed = true;
         }
-
       },
       error => {
         console.log("An error occured while retreiving the user details.");
@@ -58,7 +61,7 @@ export class UserLoginComponent implements OnInit {
   }
 
   isCheckoutRedirect(): boolean {
-    if(this.redirectUrl == "/cart/checkout"){
+    if (this.redirectUrl == "/cart/checkout") {
       return true;
     }
     return false;

@@ -3,6 +3,9 @@
         <p>Please login to continue with checkout</p>
     </div>
     <h3>User Login</h3>
+    <div *ngIf="loginFailed">
+        <p>No user found with this email. Please check your credentials or register <a routerLink="/user-registration">here</a>.</p>
+    </div>
     <br />
     <form #userForm="ngForm" (ngSubmit)="login()">
         <div class='mb-3'>
