@@ -11,7 +11,6 @@ export class CartService {
 
   constructor() { }
 
-  // TODO: see if this can go in constructor instead
   initCartFromStorage() {
     if (this.cart.cartItems.length == 0) {
       //check to see if there was a cart in storage  

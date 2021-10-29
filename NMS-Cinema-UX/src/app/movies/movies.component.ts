@@ -38,7 +38,6 @@ export class MoviesComponent implements OnInit {
   }
 
   getGenreName(id: number): string | undefined {
-    // TODO: Maybe some basic error handling incase we fail to get the list of genres
     let genreName = this.genres.find(element => element.id == id)?.name;
 
     return genreName;
@@ -57,7 +56,6 @@ export class MoviesComponent implements OnInit {
 
   splitShowtimes(showtimes: string): Array<string>{
     let result = new Array<string>();
-    // result = showtimes.split(",").forEach(showtime => showtime.trim());
     result = showtimes.split(",");
     result.forEach(str => str.trim());
     return result;

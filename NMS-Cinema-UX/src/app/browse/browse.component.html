@@ -1,6 +1,5 @@
 <div class="row row-cols-1">
     <div class="col col-xl-3">
-
         <div class="row">
             <h3>Movie Search</h3>
             <form #msf="ngForm">
@@ -15,10 +14,7 @@
                     </div>
                 </div>
             </form>
-
-
-        </div>
-        <!-- <hr> -->
+        </div>        
         <div class="row">
             <h3>Filter By Genre</h3>
             <div class="list-group mb-3" style="max-width: 75%; margin-left: 10px">
@@ -30,22 +26,15 @@
                         value="Reset Search and Filters" class="btn btn-secondary"></div>
                 <div class="col col-auto"></div>
             </div>
-
         </div>
     </div>
-
     <div class="col col-xl-9">
-        <!-- <div class="text-center"> -->
-        <!-- <div class="mt-3"> -->
         <h3>Browse Movies</h3>
         <label for="sort">Sort By:</label>
         <select name="sort" id="sort" class="ms-1" #s (change)="sortMoviesBy(s.value, s)">
             <option value="" selected></option>
             <option *ngFor="let sortOption of sortBy" [value]="sortOption">{{sortOption}}</option>
         </select>
-        <!-- <button class="btn btn-secondary btn-sm ms-3" click="">Sort</button> -->
-        <!-- <button class="btn btn-secondary btn-sm ms-3" (click)="resetSort(s)">Reset</button> -->
-        <!-- </div> -->
         <hr>
         <div class="row row-cols-auto row-cols-md-4 g-4">
             <div class="col col-auto" *ngFor="let movie of movies">
@@ -61,19 +50,10 @@
                                     <div class="col">&bull;</div>
                                     <div class="col">{{movie.language}}</div>
                                 </div>
-                                <!-- <ul class="list-inline">
-                                    <li class="list-inline-item">{{getGenreName(movie.genreId)}}</li>
-                                    <li class="list-inline-item">&bull;&nbsp;&nbsp;{{movie.duration}}</li>
-                                    <li class="list-inline-item">&bull;&nbsp;&nbsp;{{movie.language}}</li>
-                                </ul> -->
                             </small>
                         </h6>
-
                         <p class="cart-text">{{movie.description}}</p>
-                        <!-- <p class="cart-text">{{movie.language}} | {{movie.duration}}</p> -->
-
                     </div>
-
                     <div class="card-footer">
                         <div class="row mb-3 mt-auto">
                             <form #mf="ngForm" (ngSubmit)="addMovieToCart(movie, mf)">
@@ -85,22 +65,13 @@
                                         <div class="col col-auto">
                                             <select class="form-select form-select-sm mb-1" id="showtime"
                                                 name="showtime" ngModel required>
-
-
                                                 <option *ngFor="let showtime of getShowtimesFromMovie(movie)"
                                                     [ngValue]="showtime" style="width: auto;">
                                                     {{showtime}}</option>
-
-
-                                                <!-- <option *ngFor="let showtime of getShowtimesFromMovie(movie)"
-                                                value={{showtime}} style="width: auto;">
-                                                {{showtime}}</option> -->
-
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-auto">
                                     <div class="row gx-5">
                                         <div class="col-md-4">
@@ -116,11 +87,8 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- <a (click)="addMovieToCart(movie.id)" class='btn btn-primary'>Add to Cart</a> -->
                                 <input type="submit" value="Add to Cart" class="btn btn-primary"
                                     [disabled]="mf.invalid">
-                                <!-- <div [hidden]="!mf.submitted">test</div> -->
                             </form>
                         </div>
                     </div>

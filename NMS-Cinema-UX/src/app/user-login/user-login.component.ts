@@ -25,7 +25,7 @@ export class UserLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.redirectUrl = this._route.snapshot.queryParams['redirect'] || '/';
-    console.log(this.redirectUrl);
+    // console.log(this.redirectUrl);
   }
 
   login() {

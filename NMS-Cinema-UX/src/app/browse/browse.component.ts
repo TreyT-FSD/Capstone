@@ -72,36 +72,18 @@ export class BrowseComponent implements OnInit {
   }
 
   addMovieToCart(movie: Movie, form: NgForm) {
-
     let cartItem = new CartItem();
+
     cartItem.movie = movie;
     cartItem.showtime = form.value.showtime;
     cartItem.numTickets = parseInt(form.value.tickets);
     cartItem.subTotal = cartItem.numTickets * movie.ticketPrice;
 
     this._cartSvc.addToCart(cartItem);
-
     this._cartSvc.saveCart();
 
-    // TODO: May want to consider having the cart also stored is local storage so that it persists between browser session
-
     form.resetForm();
-
-    // TODO: Think about a nice way to notify user that add to cart has occured
     window.alert('Your product has been added to the cart!');
-
-    //a sleeping function
-
-    // (async () => {
-    //   // Do something before delay
-    //   console.log('before delay')
-
-    //   await new Promise( resolve => setTimeout(resolve, 2000) );
-
-    //   // Do something after
-    //   console.log('after delay')
-
-    // })();
   }
 
   genreFilter(id: number) {
@@ -128,7 +110,6 @@ export class BrowseComponent implements OnInit {
           movieSubset.push(element);
         }
       });
-      //console.log(productSubset);
       this.movies = movieSubset;
       this.searchTerm = "";
     }
@@ -151,8 +132,6 @@ export class BrowseComponent implements OnInit {
   }
 
   sortMoviesBy(sortOption: string, elmt: HTMLSelectElement) {
-    console.log("sort by: " + sortOption);
-
     if (this.movies.length > 1) {
 
       if (sortOption == "Genre") {
@@ -168,7 +147,6 @@ export class BrowseComponent implements OnInit {
         elmt.selectedIndex = 0;
       }
     }
-
   }
 
   resetSort(elmt: HTMLSelectElement) {
