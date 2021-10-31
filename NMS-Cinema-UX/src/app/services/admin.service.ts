@@ -8,12 +8,13 @@ import { Admin } from '../models/admin';
 })
 export class AdminService {
 
-  ADMIN_API: string = "http://localhost:3000";
+  //ADMIN_API: string = "http://localhost:3000"; //json-server
+  ADMIN_API: string = "http://localhost:8085"; //SpringBoot Rest API
 
   constructor(private _http: HttpClient) { }
 
-  getAdmin(): Observable<Admin> {
-    return this._http.get<Admin>(this.ADMIN_API + "/admin/1");
+  getAdmin(): Observable<Admin[]> {
+    return this._http.get<Admin[]>(this.ADMIN_API + "/admin?username=admin");
   }
 
   updatePassword(admin: Admin): Observable<Admin> {

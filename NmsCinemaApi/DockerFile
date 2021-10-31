@@ -1,0 +1,4 @@
+FROM openjdk:8
+ADD ./target/NmsCinemaApi-0.0.1-SNAPSHOT.jar NmsCinemaApi-0.0.1-SNAPSHOT.jar
+EXPOSE 8085
+ENTRYPOINT ["java","-jar", "NmsCinemaApi-0.0.1-SNAPSHOT.jar", "--spring.datasource.url=jdbc:mysql://host.docker.internal:3306/nmscinema"]

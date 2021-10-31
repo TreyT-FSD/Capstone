@@ -15,27 +15,21 @@
       "genreId": 1,
       "ticketPrice": 5,
       "language": "EN",
-      "showtimes": [
-        "showtime1",
-        "showtime2"
-      ],
+      "showtimes": "1:30pm",
       "availableTickets": 100,
       "active": true
     },
     {
       "id": 3,
       "title": "Movie 3",
-      "description": "The first movie.",
+      "description": "This one movie has a really long description. its a lot longer than some of the other movies for some reason. Nobody knows why though.",
       "duration": "2h 11m",
-      "genreId": 1,
+      "genreId": "2",
       "ticketPrice": 5,
       "language": "EN",
-      "showtimes": [
-        "showtime1",
-        "showtime2"
-      ],
+      "showtimes": "11:30am, 2:45pm, 5:30pm",
       "availableTickets": 100,
-      "active": true
+      "active": false
     },
     {
       "id": 4,
@@ -45,9 +39,57 @@
       "genreId": "3",
       "ticketPrice": 12.23,
       "language": "EN",
-      "showtimes": "WIP",
+      "showtimes": "1:30pm, 4:45pm, 7:30pm",
       "availableTickets": 150,
       "active": false
+    },
+    {
+      "id": 5,
+      "title": "showtime movie",
+      "description": "new movie",
+      "duration": "1h 2m",
+      "genreId": "3",
+      "ticketPrice": 4.55,
+      "language": "EN",
+      "showtimes": "1:30pm, 4:45pm, 7:30pm",
+      "availableTickets": 100,
+      "active": true
+    },
+    {
+      "id": 3,
+      "title": "Movie 3",
+      "description": "This one movie has a really long description. its a lot longer than some of the other movies for some reason. Nobody knows why though.",
+      "duration": "2h 11m",
+      "genreId": "2",
+      "ticketPrice": 5,
+      "language": "EN",
+      "showtimes": "11:30am, 2:45pm, 5:30pm",
+      "availableTickets": 100,
+      "active": false
+    },
+    {
+      "id": 4,
+      "title": "Testing add again",
+      "description": "this is a descriptor",
+      "duration": "2h 5m",
+      "genreId": "3",
+      "ticketPrice": 12.23,
+      "language": "EN",
+      "showtimes": "1:30pm, 4:45pm, 7:30pm",
+      "availableTickets": 150,
+      "active": false
+    },
+    {
+      "id": 5,
+      "title": "showtime movie",
+      "description": "new movie",
+      "duration": "1h 2m",
+      "genreId": "3",
+      "ticketPrice": 4.55,
+      "language": "EN",
+      "showtimes": "1:30pm, 4:45pm, 7:30pm",
+      "availableTickets": 100,
+      "active": true
     }
   ],
   "genre": [
@@ -62,6 +104,363 @@
     {
       "id": 3,
       "name": "Third Genre"
+    }
+  ],
+  "user": [
+    {
+      "id": 1,
+      "firstName": "Timmy",
+      "lastName": "Horton",
+      "email": "123",
+      "password": "123",
+      "orderNumbers": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": 2,
+      "firstName": "Trey",
+      "lastName": "Turley",
+      "email": "tturley08@gmail.com",
+      "password": "123",
+      "orderNumbers": []
+    }
+  ],
+  "product": [
+    {
+      "id": 1,
+      "name": "Apple",
+      "description": "An Apple",
+      "price": 0.99,
+      "imgPath": "assets/Bread.png"
+    },
+    {
+      "id": 3,
+      "name": "cheese",
+      "description": "some cheese",
+      "price": 1.99,
+      "imgPath": "assets/Default.png"
+    },
+    {
+      "id": 4,
+      "name": "Eggs",
+      "description": "A dozen eggs",
+      "price": 4.99,
+      "imgPath": "assets/Default.png"
+    }
+  ],
+  "order": [
+    {
+      "id": 1,
+      "customerId": 1,
+      "cart": {
+        "cartItems": [
+          {
+            "movie": {
+              "id": 1,
+              "title": "a Comedy",
+              "description": "a Comedy movie",
+              "duration": "1h 46m",
+              "genreId": 2,
+              "ticketPrice": 3.5,
+              "language": "EN",
+              "showtimes": "1:30pm, 4:30pm",
+              "availableTickets": 125,
+              "active": true
+            },
+            "showtime": "1:30pm",
+            "numTickets": 1,
+            "subTotal": 3.5
+          },
+          {
+            "movie": {
+              "id": 2,
+              "title": "An ActionMovie",
+              "description": "action movie number one",
+              "duration": "2h 11m",
+              "genreId": 3,
+              "ticketPrice": 4.55,
+              "language": "EN",
+              "showtimes": "2:30pm, 9:00pm",
+              "availableTickets": 144,
+              "active": true
+            },
+            "showtime": " 9:00pm",
+            "numTickets": 5,
+            "subTotal": 22.75
+          },
+          {
+            "movie": {
+              "id": 1,
+              "title": "a Comedy",
+              "description": "a Comedy movie",
+              "duration": "1h 46m",
+              "genreId": 2,
+              "ticketPrice": 3.5,
+              "language": "EN",
+              "showtimes": "1:30pm, 4:30pm",
+              "availableTickets": 125,
+              "active": true
+            },
+            "showtime": " 4:30pm",
+            "numTickets": 9,
+            "subTotal": 31.5
+          },
+          {
+            "movie": {
+              "id": 1,
+              "title": "a Comedy",
+              "description": "a Comedy movie",
+              "duration": "1h 46m",
+              "genreId": 2,
+              "ticketPrice": 3.5,
+              "language": "EN",
+              "showtimes": "1:30pm, 4:30pm",
+              "availableTickets": 125,
+              "active": true
+            },
+            "showtime": "1:30pm",
+            "numTickets": 2,
+            "subTotal": 7
+          }
+        ],
+        "totalPrice": 64.75
+      }
+    },
+    {
+      "id": 2,
+      "customerId": 1,
+      "cart": {
+        "cartItems": [
+          {
+            "movie": {
+              "id": 1,
+              "title": "a Comedy",
+              "description": "a Comedy movie",
+              "duration": "1h 46m",
+              "genreId": 2,
+              "ticketPrice": 3.5,
+              "language": "EN",
+              "showtimes": "1:30pm, 4:30pm",
+              "availableTickets": 125,
+              "active": true
+            },
+            "showtime": "1:30pm",
+            "numTickets": 1,
+            "subTotal": 3.5
+          },
+          {
+            "movie": {
+              "id": 2,
+              "title": "An ActionMovie",
+              "description": "action movie number one",
+              "duration": "2h 11m",
+              "genreId": 3,
+              "ticketPrice": 4.55,
+              "language": "EN",
+              "showtimes": "2:30pm, 9:00pm",
+              "availableTickets": 144,
+              "active": true
+            },
+            "showtime": " 9:00pm",
+            "numTickets": 5,
+            "subTotal": 22.75
+          },
+          {
+            "movie": {
+              "id": 1,
+              "title": "a Comedy",
+              "description": "a Comedy movie",
+              "duration": "1h 46m",
+              "genreId": 2,
+              "ticketPrice": 3.5,
+              "language": "EN",
+              "showtimes": "1:30pm, 4:30pm",
+              "availableTickets": 125,
+              "active": true
+            },
+            "showtime": " 4:30pm",
+            "numTickets": 9,
+            "subTotal": 31.5
+          },
+          {
+            "movie": {
+              "id": 1,
+              "title": "a Comedy",
+              "description": "a Comedy movie",
+              "duration": "1h 46m",
+              "genreId": 2,
+              "ticketPrice": 3.5,
+              "language": "EN",
+              "showtimes": "1:30pm, 4:30pm",
+              "availableTickets": 125,
+              "active": true
+            },
+            "showtime": "1:30pm",
+            "numTickets": 2,
+            "subTotal": 7
+          }
+        ],
+        "totalPrice": 64.75
+      }
+    },
+    {
+      "id": 3,
+      "customerId": 1,
+      "cart": {
+        "cartItems": [
+          {
+            "movie": {
+              "id": 2,
+              "title": "An ActionMovie",
+              "description": "action movie number one",
+              "duration": "2h 11m",
+              "genreId": 3,
+              "ticketPrice": 4.55,
+              "language": "EN",
+              "showtimes": "2:30pm, 9:00pm",
+              "availableTickets": 144,
+              "active": true
+            },
+            "showtime": "2:30pm",
+            "numTickets": 2,
+            "subTotal": 9.1
+          }
+        ],
+        "totalPrice": 9.1
+      }
+    },
+    {
+      "id": 4,
+      "customerId": 1,
+      "cart": {
+        "cartItems": [
+          {
+            "movie": {
+              "id": 2,
+              "title": "An ActionMovie",
+              "description": "action movie number one",
+              "duration": "2h 11m",
+              "genreId": 3,
+              "ticketPrice": 4.55,
+              "language": "EN",
+              "showtimes": "2:30pm, 9:00pm",
+              "availableTickets": 144,
+              "active": true
+            },
+            "showtime": "2:30pm",
+            "numTickets": 3,
+            "subTotal": 13.649999999999999
+          }
+        ],
+        "totalPrice": 13.649999999999999
+      }
+    },
+    {
+      "id": 5,
+      "customerId": 1,
+      "cart": {
+        "cartItems": [
+          {
+            "movie": {
+              "id": 2,
+              "title": "An ActionMovie",
+              "description": "action movie number one",
+              "duration": "2h 11m",
+              "genreId": 3,
+              "ticketPrice": 4.55,
+              "language": "EN",
+              "showtimes": "2:30pm, 9:00pm",
+              "availableTickets": 144,
+              "active": true
+            },
+            "showtime": "2:30pm",
+            "numTickets": 2,
+            "subTotal": 9.1
+          }
+        ],
+        "totalPrice": 9.1
+      }
+    },
+    {
+      "id": 6,
+      "customerId": 1,
+      "cart": {
+        "cartItems": [
+          {
+            "movie": {
+              "id": 2,
+              "title": "An ActionMovie",
+              "description": "action movie number one",
+              "duration": "2h 11m",
+              "genreId": 3,
+              "ticketPrice": 4.55,
+              "language": "EN",
+              "showtimes": "2:30pm, 9:00pm",
+              "availableTickets": 144,
+              "active": true
+            },
+            "showtime": " 9:00pm",
+            "numTickets": 2,
+            "subTotal": 9.1
+          }
+        ],
+        "totalPrice": 9.1
+      }
+    },
+    {
+      "id": 7,
+      "customerId": 1,
+      "cart": {
+        "cartItems": [
+          {
+            "movie": {
+              "id": 2,
+              "title": "An ActionMovie",
+              "description": "action movie number one",
+              "duration": "2h 11m",
+              "genreId": 3,
+              "ticketPrice": 4.55,
+              "language": "EN",
+              "showtimes": "2:30pm, 9:00pm",
+              "availableTickets": 144,
+              "active": true
+            },
+            "showtime": "2:30pm",
+            "numTickets": 5,
+            "subTotal": 22.75
+          }
+        ],
+        "totalPrice": 22.75
+      }
+    },
+    {
+      "id": 8,
+      "customerId": 1,
+      "cart": {
+        "cartItems": [
+          {
+            "movie": {
+              "id": 2,
+              "title": "An ActionMovie",
+              "description": "action movie number one",
+              "duration": "2h 11m",
+              "genreId": 3,
+              "ticketPrice": 4.55,
+              "language": "EN",
+              "showtimes": "2:30pm, 9:00pm",
+              "availableTickets": 144,
+              "active": true
+            },
+            "showtime": " 9:00pm",
+            "numTickets": 2,
+            "subTotal": 9.1
+          }
+        ],
+        "totalPrice": 9.1
+      }
     }
   ]
 }

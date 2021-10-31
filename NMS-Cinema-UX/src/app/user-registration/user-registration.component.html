@@ -1,0 +1,58 @@
+
+<form #rf="ngForm" (ngSubmit)="register()">
+    <div class="col col-3">
+        <div class="mb-3" [hidden]="rf.submitted">
+            <h3>Register</h3>
+
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control mb-3" id="firstName" name="firstName" required
+                [(ngModel)]="user.firstName" #firstName="ngModel">
+            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                <div *ngIf="firstName.errors?.required">A first name is required</div>
+            </div>
+
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control mb-3" id="lastName" name="lastName" required
+                [(ngModel)]="user.lastName" #lastName="ngModel">
+            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                <div *ngIf="lastName.errors?.required">A last name is required</div>
+            </div>
+
+            <label for="email">Email Address</label>
+            <input type="text" class="form-control mb-3" id="email" name="email" required [(ngModel)]="user.email"
+                #email="ngModel">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                <div *ngIf="email.errors?.required">An email is required</div>
+            </div>
+
+            <label for="password">Password</label>
+            <input type="password" class="form-control mb-3" id="password" name="password" required
+                [(ngModel)]="user.password" #password="ngModel">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                <div *ngIf="password.errors?.required">A password is required</div>
+            </div>
+
+            <input type="submit" value="Register" class="btn btn-success" [disabled]="rf.invalid"> |
+            <input type="reset" value="Clear Fields" class="btn btn-danger">
+            <br>
+            <br>
+            <a class="btn btn-secondary" routerLink="/browse">Back</a>
+        </div>
+        <div class="submitted-message" *ngIf="rf.submitted">
+            <div *ngIf="success">
+                <h3>Registration Complete!</h3>
+                <p>Welcome to NMS, {{ firstName.value }}</p>
+                <br>
+                <br>
+                <a class="btn btn-secondary" routerLink="/browse">Browse Movies</a> |
+                <a class="btn btn-secondary" routerLink="/user">User Profile</a>
+            </div>
+            <div *ngIf="!success">
+                <p>An user with this email already exists. Please login if you are an existing user or use different email to register.</p>
+                <button class="btn btn-secondary" (click)="resetRegistration(rf)">Register</button> |
+                <a class="btn btn-secondary" routerLink="/user-login">Login</a>
+            </div>
+        </div>
+    </div>
+    <div class="col col-9"></div>
+</form>

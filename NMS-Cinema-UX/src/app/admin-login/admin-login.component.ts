@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Admin } from '../models/admin';
 import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
+import { AuthGaurd } from '../services/auth-gaurd.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -10,19 +11,13 @@ import { Router } from '@angular/router';
 })
 export class AdminLoginComponent implements OnInit {
 
-  admin:Admin = new Admin();
-  validAdmin:Admin = new Admin();
+  admin: Admin = new Admin();
+  loginFailed: boolean = false;
 
-  constructor(private _admSvc: AdminService, private _router: Router) { }
+  constructor(private _admSvc: AdminService, private _router: Router, private _authGaurd: AuthGaurd) { }
 
   ngOnInit(): void {
-    this._admSvc.getAdmin().subscribe(
-      result => {
-        this.validAdmin = result
-      },
-      error => {
-        console.log(error);
-      });
+
   }
 
   /**
@@ -30,20 +25,38 @@ export class AdminLoginComponent implements OnInit {
    * If true, sets up some session values to indicate the user in an admin.
    */
   login() {
-    if (this.validAdmin.username.toLowerCase() == this.admin.username.toLowerCase() &&
-      this.validAdmin.password == this.admin.password) {
+    let validAdmin = new Array<Admin>();
 
-      sessionStorage.setItem("isAdmin", "true");
-      sessionStorage.setItem("adminId", this.validAdmin.id.toString());
-      sessionStorage.setItem("adminUsername", this.validAdmin.username);
+    //get existing admin
+    this._admSvc.getAdmin().subscribe(
+      result => {
+        // check for invalid or empty result
+        if (result != null) {
+          validAdmin = result;
 
-      this._router.navigate(["admin"]);
+          if (validAdmin[0].username.toLowerCase() == this.admin.username.toLowerCase() &&
+            validAdmin[0].password == this.admin.password) {
 
-    } else {
-      // console.log("admin login failed");
-      alert("Login Failed.")
-    }
+            sessionStorage.setItem("isAdmin", "true");
+            sessionStorage.setItem("adminId", validAdmin[0].id.toString());
+            sessionStorage.setItem("adminUsername", validAdmin[0].username);
 
+            this._authGaurd.userLoguout();
+
+            this._router.navigate(["admin"]);
+          } else {
+            // console.log("admin login failed");
+            alert("Login Failed, invalid credentials.")
+          }
+        }
+        else{
+          console.log("No admin found");
+          alert("No admin found")
+        }
+      },
+      error => {
+        console.log("An error occured while retreiving the admin credentials. Err: " + error);
+      });
   }
 
 }

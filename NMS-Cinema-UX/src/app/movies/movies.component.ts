@@ -38,7 +38,6 @@ export class MoviesComponent implements OnInit {
   }
 
   getGenreName(id: number): string | undefined {
-    // TODO: Maybe some basic error handling incase we fail to get the list of genres
     let genreName = this.genres.find(element => element.id == id)?.name;
 
     return genreName;
@@ -53,5 +52,12 @@ export class MoviesComponent implements OnInit {
         console.log("an error occured while removing the movie. Try Again.");
         alert("An error occured while removing the movie. Please try again.")
       });
+  }
+
+  splitShowtimes(showtimes: string): Array<string>{
+    let result = new Array<string>();
+    result = showtimes.split(",");
+    result.forEach(str => str.trim());
+    return result;
   }
 }

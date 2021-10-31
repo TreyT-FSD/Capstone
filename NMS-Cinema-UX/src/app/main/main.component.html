@@ -16,10 +16,29 @@
                 <li class="nav-item">
                     <a class="nav-link active" routerLink=''>Browse Movies</a>
                 </li>
+                <li *ngIf="isAdmin()">
+                    <a class="nav-link active" routerLink='admin'>Movie Management</a>
+                </li>
             </ul>
-            <!-- <div class="d-flex">
-          <a routerLink="cart"><img src="assets/Cart.png" alt="Cart Icon" width="40" height="40"></a>
-        </div> -->
+            <div class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="!isUser() && !isAdmin()">
+                        <li>
+                            <a class="nav-link active" routerLink='user-registration'>SignUp</a>
+                        <li>
+                            <a class="nav-link active" routerLink='user-login'>Login</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="isUser()">
+                        <li>
+                            <a class="nav-link active" routerLink='user'>My Account</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="!isAdmin()">
+                        <button routerLink="cart" class="btn btn-primary">Cart</button>
+                    </ul>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>
@@ -31,7 +50,6 @@
     </div>
 </div>
 
-<!-- TODO: Fix the footer so that its always at the bottom and is small -->
 <footer class="my-5 pt-5 text-muted text-center text-small">
     <hr>
     <p class="mb-1"><a routerLink="/browse" class="text-reset text-decoration-none">NMS Cinema</a></p>
@@ -40,8 +58,8 @@
             <a routerLink="admin" class="text-reset text-decoration-none">&nbsp;&nbsp;Admin</a>
         </li>
         <li>
-            <div *ngIf="isLoggedIn()">
-                <button routerLink="" class="btn text-reset " (click)="logout()">Logout</button>
+            <div *ngIf="isAdmin()">
+                <button routerLink="" class="btn text-reset " (click)="adminLogout()">Logout</button>
             </div>
         </li>
     </ul>

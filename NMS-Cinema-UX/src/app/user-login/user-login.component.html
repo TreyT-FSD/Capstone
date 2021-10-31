@@ -1,0 +1,34 @@
+<div style="width: 18rem;">
+    <div *ngIf="isCheckoutRedirect()">
+        <p>Please login to continue with checkout</p>
+    </div>
+    <h3>User Login</h3>
+    <div *ngIf="loginFailed">
+        <p>No user found with this email. Please check your credentials or register <a routerLink="/user-registration">here</a>.</p>
+    </div>
+    <br />
+    <form #userForm="ngForm" (ngSubmit)="login()">
+        <div class='mb-3'>
+            <input type="text" name="email" placeholder="Email Address" class="form-control" [(ngModel)]="user.email"
+                #email="ngModel" required>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                <div *ngIf="email.errors?.required">
+                    An email address is required to login.
+                </div>
+            </div>
+
+        </div>
+        <div class='mb-3'>
+            <input type="password" name="password" placeholder="Password" class="form-control"
+                [(ngModel)]="user.password" #password="ngModel" required>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                <div *ngIf="password.errors?.required">
+                    A password is required.
+                </div>
+            </div>
+
+        </div>
+        <input type="submit" value="Login" class="btn btn-success" [disabled]="userForm.invalid"> |
+        <a class="btn btn-secondary" routerLink="{{redirectUrl}}">Back</a>
+    </form>
+</div>

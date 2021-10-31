@@ -1,1 +1,98 @@
-<p>browse works!</p>
+<div class="row row-cols-1">
+    <div class="col col-xl-3">
+        <div class="row">
+            <h3>Movie Search</h3>
+            <form #msf="ngForm">
+                <div class="mb-3">
+                    <input type="text" id="movieSearch" name="movieSearch" class="form-control mb-3"
+                        style="max-width: 200px;" required [(ngModel)]="searchTerm">
+                    <div class="row">
+                        <div class="col col-auto"><input type="submit" (click)="filterMovies(searchTerm)" value="Search"
+                                class="btn btn-primary" [disabled]="msf.invalid"></div>
+                        <div class="col col-auto"><input type="reset" (click)="filterMovies('')" value="Clear Search"
+                                class="btn btn-secondary"></div>
+                    </div>
+                </div>
+            </form>
+        </div>        
+        <div class="row">
+            <h3>Filter By Genre</h3>
+            <div class="list-group mb-3" style="max-width: 75%; margin-left: 10px">
+                <button class="list-group-item" style="text-align: left !important; width: 18rem;"
+                    *ngFor="let genre of genres" (click)="genreFilter(genre.id)">{{genre.name}}</button>
+            </div>
+            <div class="row mb-3">
+                <div class="col col-auto"><input type="reset" (click)="clearGenreFilter()"
+                        value="Reset Search and Filters" class="btn btn-secondary"></div>
+                <div class="col col-auto"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col col-xl-9">
+        <h3>Browse Movies</h3>
+        <label for="sort">Sort By:</label>
+        <select name="sort" id="sort" class="ms-1" #s (change)="sortMoviesBy(s.value, s)">
+            <option value="" selected></option>
+            <option *ngFor="let sortOption of sortBy" [value]="sortOption">{{sortOption}}</option>
+        </select>
+        <hr>
+        <div class="row row-cols-auto row-cols-md-4 g-4">
+            <div class="col col-auto" *ngFor="let movie of movies">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{movie.title}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            <small>
+                                <div class="row row-cols-auto g-1">
+                                    <div class="col">{{getGenreName(movie.genreId)}}</div>
+                                    <div class="col">&bull;</div>
+                                    <div class="col">{{movie.duration}}</div>
+                                    <div class="col">&bull;</div>
+                                    <div class="col">{{movie.language}}</div>
+                                </div>
+                            </small>
+                        </h6>
+                        <p class="cart-text">{{movie.description}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row mb-3 mt-auto">
+                            <form #mf="ngForm" (ngSubmit)="addMovieToCart(movie, mf)">
+                                <div class="col-auto">
+                                    <div class="row gx-5">
+                                        <div class="col-md-4">
+                                            <label for="showtime">Showtime:</label>
+                                        </div>
+                                        <div class="col col-auto">
+                                            <select class="form-select form-select-sm mb-1" id="showtime"
+                                                name="showtime" ngModel required>
+                                                <option *ngFor="let showtime of getShowtimesFromMovie(movie)"
+                                                    [ngValue]="showtime" style="width: auto;">
+                                                    {{showtime}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="row gx-5">
+                                        <div class="col-md-4">
+                                            <label for="tickets">Tickets:</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <select class="form-select form-select-sm mb-1" id="tickets" name="tickets"
+                                                style="width: auto;" ngModel required>
+                                                <option *ngFor="let num of counter(); let i = index" value={{i+1}}>
+                                                    {{i+1}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Add to Cart" class="btn btn-primary"
+                                    [disabled]="mf.invalid">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

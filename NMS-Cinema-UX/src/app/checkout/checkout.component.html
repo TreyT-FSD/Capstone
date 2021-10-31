@@ -1,0 +1,204 @@
+<main>
+    <div class="mb-3" [hidden]="cf.submitted">
+        <div class="py-5 text-center">
+            <h2>NMS Cinema Checkout</h2>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-md-5 col-lg-4 order-md-last">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-primary">Your cart</span>
+                    <span class="badge bg-primary rounded-pill">{{getCartItems().length}}</span>
+                </h4>
+                <ul class="list-group mb-3">
+                    <div *ngFor="let cartItem of getCartItems()">
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">{{cartItem.movie.title}}</h6>
+                                <small class="text-muted">{{cartItem.showtime}}, {{cartItem.numTickets}} Tickets
+                                </small>
+                            </div>
+                            <span class="text-muted">${{cartItem.subTotal.toFixed(2)}}</span>
+                        </li>
+                    </div>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total (USD)</span>
+                        <strong>${{getCartTotal().toFixed(2)}}</strong>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Billing address</h4>
+                <form #cf="ngForm" (ngSubmit)="checkout()">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="firstName" class="form-label">First name</label>
+                            <input type="text" class="form-control" id="firstName" name="firstName" required
+                                [(ngModel)]="customer.firstName" #firstName="ngModel">
+                            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                                <div *ngIf="firstName.errors?.required">A first name is required</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="lastName" class="form-label">Last name</label>
+                            <input type="text" class="form-control" id="lastName" name="lastName" required
+                                [(ngModel)]="customer.lastName" #lastName="ngModel">
+                            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                                <div *ngIf="lastName.errors?.required">A last name is required</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required
+                                [(ngModel)]="customer.email" #email="ngModel">
+                            <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                                <div *ngIf="email.errors?.required">Please enter a valid email address for shipping
+                                    updates.</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address" name="address" required required
+                                [(ngModel)]="customerBilling.address" #address="ngModel">
+                            <div *ngIf="address.invalid && (address.dirty || address.touched)">
+                                Please enter your shipping address.
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="address2" class="form-label">Address 2 <span
+                                    class="text-muted">(Optional)</span></label>
+                            <input type="text" class="form-control" id="address2" name="address2"
+                                placeholder="Apartment or suite">
+                        </div>
+                        <div class="col-md-5">
+                            <label for="country" class="form-label">Country</label>
+                            <select class="form-select" id="country" name="country" required
+                                [(ngModel)]="customerBilling.country" #country="ngModel">
+                                <option value="">Choose...</option>
+                                <option>United States</option>
+                            </select>
+                            <div *ngIf="country.invalid && (country.dirty || country.touched)">
+                                Please select a valid country.
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="state" class="form-label">State</label>
+                            <select class="form-select" id="state" name="state" required
+                                [(ngModel)]="customerBilling.state" #state="ngModel">
+                                <option value="">Choose...</option>
+                                <option>Texas</option>
+                            </select>
+                            <div *ngIf="state.invalid && (state.dirty || state.touched)">
+                                Please provide a valid state.
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="zip" class="form-label">Zip</label>
+                            <input type="text" class="form-control" id="zip" name="zip" required minlength="5"
+                                maxlength="5" [(ngModel)]="customerBilling.zip" #zip="ngModel">
+                            <div *ngIf="zip.invalid && (zip.dirty || zip.touched)">
+                                Zip code required.
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <h4 class="mb-3">Payment</h4>
+                    <div class="my-3">
+                        <div class="form-check">
+                            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked
+                                required>
+                            <label class="form-check-label" for="credit">Credit card</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+                            <label class="form-check-label" for="debit">Debit card</label>
+                        </div>
+                    </div>
+                    <div class="row gy-3">
+                        <div class="col-md-6">
+                            <label for="cc-name" class="form-label">Name on card</label>
+                            <input type="text" class="form-control" id="cc-name" name="ccName" required
+                                [(ngModel)]="customerBilling.ccName" #ccName="ngModel">
+                            <small class="text-muted">Full name as displayed on card</small>
+                            <div *ngIf="ccName.invalid && (ccName.dirty || ccName.touched)">
+                                Name on card is required
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cc-number" class="form-label">Credit card number</label>
+                            <input type="text" class="form-control" id="cc-number" name="ccNumber" required
+                                minlength="16" maxlength="16" [(ngModel)]="customerBilling.ccNumber"
+                                #ccNumber="ngModel">
+                            <div *ngIf="ccNumber.invalid && (ccNumber.dirty || ccNumber.touched)">
+                                Credit card number is required
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cc-expiration" class="form-label">Expiration</label>
+                            <input type="text" class="form-control" id="cc-expiration" name="expirationDate" required
+                                [(ngModel)]="customerBilling.ccExpiration" #expirationDate="ngModel">
+                            <div *ngIf="expirationDate.invalid && (expirationDate.dirty || expirationDate.touched)">
+                                Expiration date required
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cc-cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cc-cvv" name="cvv" required minlength="3"
+                                maxlength="3" [(ngModel)]="customerBilling.cvv" #cvv="ngModel">
+                            <div *ngIf="cvv.invalid && (cvv.dirty || cvv.touched)">
+                                Security code required
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <input type="submit" value="Submit Payment" class="w-100 btn btn-primary btn-lg"
+                        [disabled]="cf.invalid">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="submitted-message text-center" *ngIf="cf.submitted">
+        <p>Hi, {{customer.firstName}}</p>
+        <h3 class="mb-4">Thank you for your order!</h3>
+        <div class="row">
+            <div class="col-sm"></div>
+            <div class="col-sm">
+                <p>Order Summary</p>
+                <table class="table table-sm ">
+                    <thead>
+                        <tr>
+                            <th>Movie</th>
+                            <th>Ticket Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cartItem of cartItemSnapshot; let i = index">
+                            <td>
+                                <table class="table table-borderless table-sm">
+                                    <thead></thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{cartItem.movie.title}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><small>Showtime: {{cartItem.showtime}}</small></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td>{{cartItem.numTickets}}</td>
+                            <td>${{cartItem.subTotal.toFixed(2)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-end">
+                    <div class="p-2">Total:</div>
+                    <div class="p-2">${{cartTotal.toFixed(2)}}</div>
+                </div>
+            </div>
+            <div class="col-sm"></div>
+        </div>
+        <a class="btn btn-primary mt-4" routerLink="/">Continue Shopping</a>
+    </div>
+</main>

@@ -23,15 +23,12 @@
         </div>
         <div class="col col-sm-8"></div>
     </div>
-
     <br>
-    <!-- <div class="row mb-3 justify-content-md-center"> -->
     <div class="col col-sm-4">
         <button class="btn btn-primary" (click)="updateGenre()">Update Genre</button> |
         <a class="btn btn-secondary" routerLink="/admin">Back </a>
     </div>
     <div class="col col-sm-8"></div>
-
 </div>
 <div *ngIf="!genre">
     Failed to retrieve the genre. Please return to the admin page and try again.
