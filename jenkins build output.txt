@@ -1,0 +1,260 @@
+Started by user trey
+Running as SYSTEM
+Building in workspace C:\jenkins\home\workspace\NMS-Cinema
+The recommended git tool is: NONE
+No credentials specified
+ > git.exe rev-parse --resolve-git-dir C:\jenkins\home\workspace\NMS-Cinema\.git # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url https://github.com/TreyT-FSD/Capstone # timeout=10
+Fetching upstream changes from https://github.com/TreyT-FSD/Capstone
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.31.1.windows.1'
+ > git.exe fetch --tags --force --progress -- https://github.com/TreyT-FSD/Capstone +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/dev^{commit}" # timeout=10
+Checking out Revision e299e3786bc683eead7f0bf66e4a85fea766d57d (refs/remotes/origin/dev)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f e299e3786bc683eead7f0bf66e4a85fea766d57d # timeout=10
+Commit message: "added check to verify we have movies before checking for length"
+ > git.exe rev-list --no-walk c42b706df8448a0aafd0ac5e51c80faf076da033 # timeout=10
+[NMS-Cinema] $ cmd /c call C:\WINDOWS\TEMP\jenkins6477360105850110862.bat
+
+C:\jenkins\home\workspace\NMS-Cinema>cd C:\Jenkins\home\workspace\NMS-Cinema\NmsCinemaApi 
+
+C:\Jenkins\home\workspace\NMS-Cinema\NmsCinemaApi>mvn package -DskipTests 
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.app:NmsCinemaApi >------------------------
+[INFO] Building NmsCinemaApi 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:3.2.0:resources (default-resources) @ NmsCinemaApi ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 1 resource
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ NmsCinemaApi ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 27 source files to C:\Jenkins\home\workspace\NMS-Cinema\NmsCinemaApi\target\classes
+[INFO] /C:/Jenkins/home/workspace/NMS-Cinema/NmsCinemaApi/src/main/java/com/app/dao/OrderConverter.java: C:\Jenkins\home\workspace\NMS-Cinema\NmsCinemaApi\src\main\java\com\app\dao\OrderConverter.java uses unchecked or unsafe operations.
+[INFO] /C:/Jenkins/home/workspace/NMS-Cinema/NmsCinemaApi/src/main/java/com/app/dao/OrderConverter.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:3.2.0:testResources (default-testResources) @ NmsCinemaApi ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] skip non existing resourceDirectory C:\Jenkins\home\workspace\NMS-Cinema\NmsCinemaApi\src\test\resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ NmsCinemaApi ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to C:\Jenkins\home\workspace\NMS-Cinema\NmsCinemaApi\target\test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ NmsCinemaApi ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:3.2.0:jar (default-jar) @ NmsCinemaApi ---
+[INFO] Building jar: C:\Jenkins\home\workspace\NMS-Cinema\NmsCinemaApi\target\NmsCinemaApi-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.5.5:repackage (repackage) @ NmsCinemaApi ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.025 s
+[INFO] Finished at: 2021-10-31T01:11:35-05:00
+[INFO] ------------------------------------------------------------------------
+[NMS-Cinema] $ cmd /c call C:\WINDOWS\TEMP\jenkins3262057475928028055.bat
+
+C:\jenkins\home\workspace\NMS-Cinema>cd C:\Jenkins\home\workspace\NMS-Cinema 
+
+C:\jenkins\home\workspace\NMS-Cinema>docker-compose down 
+Removing network nms-cinema_default
+Network nms-cinema_default not found.
+
+C:\jenkins\home\workspace\NMS-Cinema>docker image prune -f 
+Total reclaimed space: 0B
+
+C:\jenkins\home\workspace\NMS-Cinema>docker volume prune -f 
+Deleted Volumes:
+9ec2e9d70564ebbe5c9e10f3812733a7204f67c2465725086a4dc900b1c7365f
+42c6d26366aaf6c346afa44ce7b54f9b7a1a04bbb72356820f913ca49bae6dc4
+2b4531136cc32288dec2362f2b4021fd29c3a4d76131434dc6c330a76e7564c8
+c001beb3da87f8e59a3cb0e20a2e9a84ab41300d48f94360712183470915bdee
+cdab90eb669c960885e3ee256d61e071cdbb5bab72fcd44986676b26e559d13f
+
+Total reclaimed space: 961.6MB
+
+C:\jenkins\home\workspace\NMS-Cinema>docker-compose pull 
+Pulling database ... 
+
+Pulling api      ... 
+
+Pulling web      ... 
+
+Pulling api      ... done
+
+Pulling web      ... done
+
+Pulling database ... pulling from library/mysql
+
+Pulling database ... digest: sha256:6d7d4524463fe6e2b8...
+
+Pulling database ... status: image is up to date for m...
+
+Pulling database ... done
+
+
+C:\jenkins\home\workspace\NMS-Cinema>docker-compose up --build -d 
+Creating network "nms-cinema_default" with the default driver
+Building api
+#1 [internal] load build definition from DockerFile
+#1 sha256:3a30c44e1f017dd64619d8f377a7934ce299c0b3a164d12e82bfdcfce6a04123
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#2 [internal] load .dockerignore
+#2 sha256:2d411f70096bae57aef5628f2265831db1d567bded8f87fb77440a3b631f2740
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/openjdk:8
+#3 sha256:c1006613b124ab347fbb29ae49e2ab62add271baf34bdfe7a7a4c383ac159b76
+#3 DONE 0.7s
+
+#4 [1/2] FROM docker.io/library/openjdk:8@sha256:9d233cf187b7022a8f285ed7c162b0a87624de1dbe09dcc499bfab83c22a66d5
+#4 sha256:e9bbca742b1fec358b2175d8197084c184f709748877be02e12d8b67e89a8b78
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 sha256:32a1bb1b4d0ec1510a55090a69deddc10274b6e534e9de44a4cd3f5a7a32fb71
+#5 transferring context: 42.78MB 0.3s done
+#5 DONE 0.4s
+
+#4 [1/2] FROM docker.io/library/openjdk:8@sha256:9d233cf187b7022a8f285ed7c162b0a87624de1dbe09dcc499bfab83c22a66d5
+#4 sha256:e9bbca742b1fec358b2175d8197084c184f709748877be02e12d8b67e89a8b78
+#4 CACHED
+
+#6 [2/2] ADD ./target/NmsCinemaApi-0.0.1-SNAPSHOT.jar NmsCinemaApi-0.0.1-SNAPSHOT.jar
+#6 sha256:2ff043afab7511ede66956d20d38f959cbf615208405e5206b5f202d6e04afb1
+#6 DONE 0.3s
+
+#7 exporting to image
+#7 sha256:e8c613e07b0b7ff33893b694f7759a10d42e180f2b4dc349fb57dc6b71dcab00
+#7 exporting layers
+#7 exporting layers 0.2s done
+#7 writing image sha256:f6732d7a85bc72bdf898afb206bc973f7c34b953c21410389e2d2cd34a5ec99d done
+#7 naming to docker.io/library/nms-cinema_api done
+#7 DONE 0.2s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+Building web
+#1 [internal] load build definition from DockerFile
+#1 sha256:941ee5135d0b2e731824582092b3ed9768c053360d37ff737a7950d2af6a361d
+#1 transferring dockerfile: 304B done
+#1 DONE 0.0s
+
+#2 [internal] load .dockerignore
+#2 sha256:bbbb8f0a188b8a252e2d2c0aa09abfc1abd47d012750f99611a97adf6d63a3e7
+#2 transferring context: 34B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/nginx:1.15.9-alpine
+#3 sha256:eeb16047c15ef608c066f516f5a2086c6c4224875ea3116004af9fcacfcdaa57
+#3 DONE 1.4s
+
+#4 [internal] load metadata for docker.io/library/node:12.16.1-alpine
+#4 sha256:7e74dbfd0d4adcdb3711f53fdd9ee12b8c65595cd936dd5b942cab166534ea9c
+#4 DONE 1.4s
+
+#6 [builder 1/6] FROM docker.io/library/node:12.16.1-alpine@sha256:6b5b783c9cfe229af0bd5b0b677dd32005bb22d58465f3d0fe7fbd1c60ce068c
+#6 sha256:625eadbf6c064d8b600b6a23185510ee40cea45dd1101b01600a06c6e7350ef7
+#6 DONE 0.0s
+
+#5 [stage-1 1/2] FROM docker.io/library/nginx:1.15.9-alpine@sha256:55390addbb1a2b82e6ffabafd72e0f5dfbc8f86c2e7d9f41fb914cca537bd500
+#5 sha256:24374def483e95bf9ea54e6ec4365dc297abb280de33de1f9803ba04de32c687
+#5 DONE 0.0s
+
+#8 [internal] load build context
+#8 sha256:e969b045f89eac798f1be2f8192c2deb9b515d177d0f52001ac6beff6bb1a4a6
+#8 transferring context: 11.25kB 0.0s done
+#8 DONE 0.0s
+
+#7 [builder 2/6] WORKDIR /usr/src/app
+#7 sha256:4803d36e9c6b6d2c6fe2e38495a2eb3e03b1eddf293c760ab4ba908ae425bfc8
+#7 CACHED
+
+#9 [builder 3/6] COPY ./package.json ./package-lock.json /usr/src/app/
+#9 sha256:659e594ee32d1a0cb191fad821d8d96f454c3ad990b9a52eb63860800b1281e2
+#9 CACHED
+
+#10 [builder 4/6] RUN npm install
+#10 sha256:09d178bc9ca5f56caf8adfb96a5c4f695a1a805c9dcadf749ba18ab974b484c8
+#10 CACHED
+
+#11 [builder 5/6] COPY . .
+#11 sha256:1f8499ea6a5dd2740b919ae7f86160277b79beebcca23b611a549f9080a914ff
+#11 DONE 0.1s
+
+#12 [builder 6/6] RUN npm run build --prod
+#12 sha256:3517abda780739da4a99832cd696d67e8f745a8ba1a8d7b5a9968755de4e46d2
+#12 0.505 
+#12 0.505 > nms-cinema@0.0.0 build /usr/src/app
+#12 0.505 > ng build
+#12 0.505 
+#12 2.437 - Generating browser application bundles (phase: setup)...
+#12 5.658 Compiling @angular/core : es2015 as esm2015
+#12 8.615 Compiling @angular/common : es2015 as esm2015
+#12 9.219 Compiling @angular/platform-browser : es2015 as esm2015
+#12 9.221 Compiling @angular/router : es2015 as esm2015
+#12 9.521 Compiling @angular/platform-browser-dynamic : es2015 as esm2015
+#12 9.841 Compiling @angular/common/http : es2015 as esm2015
+#12 9.872 Compiling @angular/forms : es2015 as esm2015
+#12 34.09 ✔ Browser application bundle generation complete.
+#12 34.10 ✔ Browser application bundle generation complete.
+#12 34.10 - Copying assets...
+#12 34.10 ✔ Copying assets complete.
+#12 34.10 - Generating index html...
+#12 34.26 ✔ Index html generation complete.
+#12 34.26 
+#12 34.26 Initial Chunk Files               | Names         |      Size
+#12 34.26 main.1bf8e2b8bf5bd00ca6f4.js      | main          | 321.15 kB
+#12 34.26 styles.502adb36892941258c51.css   | styles        | 156.43 kB
+#12 34.26 scripts.f42f9914bc05e06a0a71.js   | scripts       |  57.84 kB
+#12 34.26 polyfills.9fbdf493a5eec467cd74.js | polyfills     |  35.97 kB
+#12 34.26 runtime.5865ca4c591f2c1387c9.js   | runtime       |   1.00 kB
+#12 34.26 
+#12 34.26 | Initial Total | 572.38 kB
+#12 34.26 
+#12 34.26 Build at: 2021-10-31T06:12:29.936Z - Hash: e2c735e596530b9e2759 - Time: 30621ms
+#12 34.26 
+#12 34.26 Warning: initial exceeded maximum budget. Budget 500.00 kB was not met by 72.38 kB with a total of 572.38 kB.
+#12 34.26 
+#12 34.26 
+#12 DONE 34.4s
+
+#13 [stage-1 2/2] COPY --from=builder /usr/src/app/dist/NMS-Cinema /usr/share/nginx/html
+#13 sha256:43833be026f6cf4d614fda8652c32330a9f921bd71596985fbc2f2561b5c7f85
+#13 CACHED
+
+#14 exporting to image
+#14 sha256:e8c613e07b0b7ff33893b694f7759a10d42e180f2b4dc349fb57dc6b71dcab00
+#14 exporting layers done
+#14 writing image sha256:1c44ca79cab20a742c3682efe5caf399420815f205e56e88f3adf076f4e43999 done
+#14 naming to docker.io/library/nms-cinema_web done
+#14 DONE 0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+Creating nms-cinema_database_1 ... 
+
+Creating nms-cinema_database_1 ... done
+
+Creating nms-cinema_api_1      ... 
+
+Creating nms-cinema_api_1      ... done
+
+Creating nms-cinema_web_1      ... 
+
+Creating nms-cinema_web_1      ... done
+
+
+C:\jenkins\home\workspace\NMS-Cinema>exit 0 
+Finished: SUCCESS
