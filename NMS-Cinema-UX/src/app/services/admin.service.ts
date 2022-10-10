@@ -9,7 +9,10 @@ import { Admin } from '../models/admin';
 export class AdminService {
 
   //ADMIN_API: string = "http://localhost:3000"; //json-server
-  ADMIN_API: string = "http://localhost:8085"; //SpringBoot Rest API
+  // ADMIN_API: string = "http://localhost:8085"; //SpringBoot Rest API
+  ADMIN_API: string = "http://3.15.44.207:8085"; //SpringBoot Rest API
+
+  
 
   constructor(private _http: HttpClient) { }
 
